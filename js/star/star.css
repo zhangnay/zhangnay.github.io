@@ -1,0 +1,5 @@
+#canvas{
+	border: solid 1px black;display: block;margin: -30px -10px;background-color: black;
+	position: absolute;
+	z-index: -1;
+}
