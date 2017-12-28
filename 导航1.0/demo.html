@@ -1,0 +1,34 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>autoUpdate</title>  
+    <script>  
+    var xmlhttp;  
+    function populateList(){  
+        var url = 'jsondata.txt';  
+        xmlhttp.open('GET',url,true);  
+        xmlhttp.onreadystatechange = processResponse;  
+        xmlhttp.send(null);  
+    }  
+    function processResponse(){  
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200){  
+            var li = document.createElement("li");  
+            var txt = document.createTextNode(xmlhttp.responseText);  
+            li.appendChild(txt);  
+            document.getElementById("update").appendChild(li);  
+            setTimeout(populateList,1000);  
+        }else if(xmlhttp.readyState == 4 && xmlhttp.status != 200){  
+            console.log(xmlhttp.responseText);  
+        }  
+    }  
+    window.onload = function(){  
+        xmlhttp = new XMLHttpRequest();  
+        populateList();  
+    }  
+    </script>  
+</head>  
+<body>  
+    <div id="update"></div>  
+</body>  
+</html>  

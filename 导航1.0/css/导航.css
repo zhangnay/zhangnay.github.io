@@ -1,0 +1,44 @@
+﻿.dh{
+	float: left;
+	width: 250px;
+	height: 250px;
+	text-align: center;
+	
+}
+.dh img:hover{
+	width: 60%;
+	height: 60%;
+}
+.dh img{
+	width: 40%;
+	height: 40%;
+	text-align: center;
+	/*border-radius: 5px;
+	border: 6px solid #AAAAAA;*/
+}
+.d{
+	width: 1080px;
+	height: 30px;
+	color: white ;
+}
+
+p{
+	font-size: 50px;
+	
+}
+body{
+	background: #16a085;
+	background-image: url(../img/背景/魔幻.jpg);
+	background-repeat:   no-repeat;
+	background-attachment: fixed;背景固定
+}
+li{
+	float: left;
+	font-size: 20px;
+	
+}
+
+.change{
+	border-radius: 10px;
+	border: 6px solid #AAAAAA;
+}

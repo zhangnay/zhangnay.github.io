@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <mete></mete>
+    <title>ajax</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/导航.css" />
+    <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+    <script type="text/javascript">  
+
+        window.onload=function load(){ 
+
+            $.ajax({  
+                url: 'jsondata.txt',  
+                type: 'GET',  
+                dataType: 'json',  
+                timeout: 1000,  
+                cache: false,  
+             beforeSend: LoadFunction, //加载执行方法    
+             error: erryFunction,  //错误执行方法    
+             success: succFunction //成功执行方法    
+         })
+
+
+
+            function LoadFunction() {  
+             $("#list").html('加载中...');  
+         }  
+         function erryFunction() {  
+             alert("error");  
+         }  
+         function succFunction(tt) {  
+             $("#list").html('');  
+
+             //eval将字符串转成对象数组  
+             //var json = { "id": "10086", "uname": "zhangsan", "email": "zhangsan@qq.com" };  
+             //json = eval(json);  
+             //alert("===json:id=" + json.id + ",uname=" + json.uname + ",email=" + json.email);  
+
+             var json = eval(tt); //数组         
+             $.each(json, function (index, item) {  
+                 //循环获取数据    
+                 var Id = json[index].Id;  
+                 var Name = json[index].Name;  
+                 var Img = json[index].Img; 
+                 var URL=json[index].URL; 
+                 $("#list").html($("#list").html() + "<br>" + Id + " - " + Nmae + " - " + Img + " - " + URL + "<br/>");  
+             });  
+         }  
+     }; 
+ </script>  
+</head>
+<body>
+    <div style="width: 1920px;height: 1080px;font-size:15px;">
+        <p>A jQuery plugin for snazzy background particle systems</p>
+
+
+
+        <ul id="list">  ssss
+        </ul>  
+
+        <div class="dh" onclick="window.open('http://cclolcc.com');">
+            <img src="img/导航/cc.jpg" />
+            <p>cc</p>
+        </div>
+    </div>
+</body>
+</html>

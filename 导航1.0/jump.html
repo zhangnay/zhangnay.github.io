@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <?php include_once 'Application/Home/View/Index/link.php'; ?>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+</head>
+<body>
+
+    <!-- <div id="ui">
+     <button class="btn btn-primary" style="position : absolute; font-size: 24px;
+     width : 200px;height:50px;
+     margin-left: 45%;margin-top:10% "  onclick="startn()" id="ui1" >开始</button>
+     <button class="btn btn-primary" style="position : absolute; font-size: 24px;
+     width : 200px;height:50px;
+     margin-left: 45%;margin-top:15% ">退出</button>
+     <button class="btn btn-primary" style="position : absolute; font-size: 24px;
+     width : 200px;height:50px;
+     margin-left: 45%;margin-top:20% ">帮助？</button>
+ </div>
+ <p id="x">0</p><p id="y">0</p> -->
+
+ <canvas id="canvas" width="500" height="700" style="border: solid 1px red;display: block;margin: 50px auto;">
+    暂不支持此浏览器，请更换浏览器后再试！
+</canvas>
+
+<script >
+
+
+    window.onload=function load(){
+        //开始
+        var canvas=document.getElementById("canvas");
+        context=canvas.getContext("2d");
+        var start=0;
+        var speed=-1;
+        var Score=0;
+        var num=7;
+
+        var load=[{x:350,y:250},{x:350,y:250},{x:350,y:250},{x:350,y:250}];
+        var colorchars=['#A98307','#F44611','#9B111E','#412227','#EA899A','#6C4675','#3E5F8A','#3F888F','#587246','#8E402A'];
+        var leftbar=new Array(30);
+        var rightbar=new Array(30);
+        var leftbarxy=new Array(60);
+        var rightbarxy=new Array(60);
+
+        for (i =0; i <= 30; i++) {
+            leftbar[i]=0;
+            rightbar[i]=0;
+        }
+
+        for (i=0;i<=num;i++){
+            if(speed){
+                rightbar[Math.floor(Math.random()*30)]=1;
+            }else{
+                leftbar[Math.floor(Math.random()*30)]=1;
+            }
+        }
+
+        var s=1;
+        var die=0;
+
+
+        //开始
+        var myVar=setInterval(function(){
+            context.clearRect(0,0,500,700);
+
+            //空格开始
+            document.onkeydown=function(event){
+                var e = event || window.event || arguments.callee.caller.arguments[0];   
+                if(e && e.keyCode==32){
+                    start=1;
+                }
+            }; 
+
+            if(start){
+
+
+            //触顶死亡
+            if(load[0].y<=30||load[0].y>=770){
+                //die('die')；
+                die=1;
+                if(die){
+                    alert("Game Over");
+                    die=0;
+                    s=1;
+                    speed=-1;
+                    start=0;
+                    Score=0;
+                    load=[{x:350,y:250},{x:370,y:260},{x:390,y:270},{x:410,y:300}];
+                }
+
+            }
+
+            for (j = 4 - 1; j > 0; j--) {
+                load[j] = load[j-1];
+            }
+
+            //触墙反向
+            if(load[0].x<=30||load[0].x>=470){
+                if(load[0].x<=10||load[0].x>=490){
+                    speed=-speed;
+                    Score++;
+                    for (i=0;i<=num;i++){
+                        leftbar[Math.floor(Math.random()*30)]=1;
+                        rightbar[Math.floor(Math.random()*30)]=1;
+                    }
+                }
+            }
+
+
+            //方向判断
+            if(speed>0){
+                load[0].x+=15;
+            }else{
+                load[0].x-=15;
+            }
+
+
+            //按键判断
+            document.onkeydown=function(event){
+                var e = event || window.event || arguments.callee.caller.arguments[0];   
+                if(e && e.keyCode==32){
+                    load[0].y-=90;  
+                    s=1;            
+                }
+            }; 
+
+            //持续下落
+            load[0].y+=s*3;
+            s++;
+
+            
+
+            context.beginPath();
+            for(i=0;i<4;i++){
+                context.arc(load[i].x,load[i].y,20-5*i,0,2*Math.PI);
+            }
+            c=Math.floor(Math.random()*10);
+            context.fillStyle=colorchars[c];
+            context.fill();
+            
+            //左右墙
+            debugger;
+            for(i=0;i<30;i++){
+                if(speed>0){
+                    if(rightbar[i]){
+                        leftbarxy[i]=[[500,i*40],[480,i*40+20],[500,(i+1)*40]];
+                    }
+                }else{
+                    if(leftbar[i]){
+                        leftbarxy[i]=[[0,i*40],[20,i*40+20],[0,(i+1)*40]];
+                    }
+                }
+            }
+
+            //顶--底
+            context.beginPath();
+            context.moveTo(0,0);
+            for(j=1;j<=25;j++){
+                if(j%2==0){
+                    y=0;
+                }else{
+                    y=20;
+                }
+                context.lineTo(j*20,y);
+            }
+            context.strokeStyle="red";
+            context.lineWidth=2;
+
+            context.moveTo(0,700);
+            for(j=1;j<=25;j++){
+                if(j%2==0){
+                    y=700;
+                }else{
+                    y=680;
+                }
+                context.lineTo(j*20,y);
+            }
+
+
+
+            // if(speed>0){
+            //     context.moveTo(500,0);
+            //     for(j=0;j<30;j++){
+            //         context.lineTo(rightbarxy[j][0][0],rightbarxy[j][0][1]);
+            //         context.lineTo(rightbarxy[j][1][0],rightbarxy[j][1][1]);
+            //         context.lineTo(rightbarxy[j][2][0],rightbarxy[j][2][1]);
+            //     }
+            // }else{
+            //     context.moveTo(0,0);
+            //     for(j=0;j<30;j++){
+            //         context.lineTo(leftbarxy[j][0][0],leftbarxy[j][0][1]);
+            //         context.lineTo(leftbarxy[j][1][0],leftbarxy[j][1][1]);
+            //         context.lineTo(leftbarxy[j][2][0],leftbarxy[j][2][1]);
+            //     }
+            // }
+
+            context.stroke();
+
+            //Score
+            context.beginPath();
+            context.font="35px Georgia ";
+            context.strokeText(Score,100,100);
+        }
+
+
+    },50);
+        context.stroke();
+    }
+</script>
+</body>
+</html>

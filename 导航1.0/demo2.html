@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <mete></mete>
+    <title>ajax-demo2</title>
+    <!--<link rel="stylesheet" href="css/style.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/导航.css" />
+    <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+    <script type="text/javascript">  
+        $(document).ready(function(){ 
+
+            $.getJSON('jsondata.txt',function(data){ 
+
+               $.each(data,function(i,n){ 
+
+                option='<div  class="dh"';
+                option+='id="'+n["Id"];
+                option+='"onclick="window.open(';
+                      //<div class="dh" onclick="window.open(
+                      option+="'"+n["URL"]+"'";
+                       //'http://app-echo.com'
+                       option+=');">';
+                      //);">
+                      option+='<img src="'+n["Img"]+'" />';
+                      option+="<p>"+n["Name"]+"</p>";
+                      option+="</div>";
+
+                      $('#result').append(option); 
+                  });
+           }); 
+            return false;
+        }); 
+
+
+        function change(){
+            document.getElementById("id1").className = "change dh";  
+        }
+    </script>
+
+
+</head>
+<body>
+    <div style="width:1920px;font-size:15px;" >
+
+        <div >
+            <p center="auto">A jQuery plugin for snazzy background particle systems</p>
+            <button onclick="change()">管理</button>
+        </div>
+        <div id="result"><!-- 导航图标 --></div> 
+    </div>
+</body>
+</html>
