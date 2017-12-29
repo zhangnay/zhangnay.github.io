@@ -9,7 +9,7 @@ $(function(){
     		["百度","百度.png","baidu.com","1"],
     		["智慧树","智慧树.png","zhihuishu.com","1"],
     		["音悦台","音悦台.png","yinyuetai.com","1"],
-    		["a站","a站.png","www.acfun.com","1"],
+    		["a站","a站.png","www.acfun.cn","1"],
     		[ "b站","b站.jpg","bilibili.com","1"],
     		[ "百度云","百度云.jpg","pan.baidu.com/disk/home#list/path=%2F","1"],
     		[ "贴吧","贴吧.png","tieba.baidu.com","1"],
