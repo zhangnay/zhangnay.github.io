@@ -18,7 +18,7 @@ $(function(){
     		[ "runoob","runoob.jpg","runoob.com","1"],
     		[ "Bootstrap","Bootstrap.png","bootstrap.com","1"],
     		[ "百度翻译","百度翻译.png","fanyi.baidu.com/translate","1"],
-    		[ "Jquery插件","Jquery.png","jq22.com","1"],
+    		[ "Jquery插件","jquery.png","jq22.com","1"],
     		[ "知乎","知乎.png","zhihu.com","1"],
     		[ "素材中国","素材中国.jpg","sccnn.com","1"],
     		[ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
