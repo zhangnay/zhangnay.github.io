@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>javascript获取当前鼠标坐标</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<script type="text/javascript">
+ function mousePosition(ev){
+  if(ev.pageX || ev.pageY){//firefox、chrome等浏览器
+   return {x:ev.pageX,y:ev.pageY};
+  }
+  return {// IE浏览器
+   x:ev.clientX + document.body.scrollLeft - document.body.clientLeft,
+   y:ev.clientY + document.body.scrollTop - document.body.clientTop
+  };
+ }
+function getMousePos(event) {
+      var e = event || window.event;
+      alert("this is a mouse click");
+      return {'x':e.clientX,'y':clientY}
+}
+
+ function mouseMove(ev){
+  ev = ev || window.event;
+  var mousePos = mousePosition(ev); 
+  document.getElementById('x').innerHTML = mousePos.x;
+  document.getElementById('y').innerHTML = mousePos.y;
+ }
+
+ document.onmousemove = mouseMove;
+ document.onclick=function(){
+  alert("this is a mouse click");
+ }
+ 
+</script>
+<style type="text/css">
+h3{color:blue;}
+p{line-height:30px;height:30px;font-size:14px;width:500px;}
+span{color:orange;font-weight:bold;}
+</style>
+</head>
+<body>
+ <h3>您的鼠标已经被跟踪</h3>
+ <p> X 轴坐标：<span id="x"></span></p>
+ <p> Y 轴坐标：<span id="y"></span></p>
+</body>
+</html>
