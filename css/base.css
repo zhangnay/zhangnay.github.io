@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+
+body{
+	background-image: url('../img/巨人.jpg');
+	background-repeat:no-repeat; 
+	background-attachment:fixed;
+}
+
+.welcome{
+	width: 100%;
+	min-width: 1600px;
+	height: 350px;
+
+	background-color: rgba(255,255,255,0.4);
+	box-shadow: 0 0 10px  #000 inset;
+}
+.welcome div{
+	opacity: 1.0;
+}
+.main{
+	width: 100%;
+	min-width: 1600px;
+	height: 600px;
+	background-color: #c5003a;
+}
+.main div{
+	
+}
+.login{
+	margin-left: 70%;
+	width: 350px;
+	height: 550px;
+	background-color: rgba(255,255,255,0.2);
+	font-size: 28px;
+	text-align:center;
+}
+
+.login input{
+	width: 280px;
+	border-radius:10px;
+	outline:none;
+	text-align: center;
+}
+.login button{
+	width: 280px;
+	border-radius:10px;
+	outline:none;
+	background-color: 
+}
+
+.main_left{
+	background: linear-gradient(to right,#c5003a, #64009b);
+	width:50%;
+	
+}
+.main_right{
+	background: linear-gradient(to right,#64009b, #4200bd);
+	width:50%;
+}
+
+
+.juzhong{
+	text-align:center;
+}
+.jinggao{
+	color:red;
+}
+
+.ziti{
+	color :white;
+}

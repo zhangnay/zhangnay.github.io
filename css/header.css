@@ -1,0 +1,87 @@
+.head{
+	width: 100%;
+	min-width: 1600px;
+	height: 60px;
+
+	background-color: black;
+}
+.head div{
+	float: left;
+}
+
+
+.logo{
+	padding-top: 5px;
+	padding-left: 20%;
+}
+.logo img{
+	width: 50px;
+}
+.p{
+	margin-left:10px;
+	font-size: 20px;
+	line-height: 60px;
+	color:white;
+}
+
+
+.img{
+	padding-top: 5px;
+	padding-left: 20%;
+}
+.img img{
+	width: 50px;
+}
+.p{
+	margin-left:10px;
+	font-size: 20px;
+	line-height: 60px;
+	color:white;
+}
+
+.menu{
+	margin-left: 30px;
+	color: white;
+	font-size: 20px;
+}
+.menu li{
+	width: 120px;
+	list-style: none;
+	float: left;
+	margin-left:10px;
+	line-height: 60px;
+	text-align: center;
+}
+.menu li:hover{
+	background-color: rgba(255,255,255,0.2);
+}
+.menu a{
+	text-decoration: none;
+	color:white;
+}
+.menu a:hover{
+	color: red;
+}
+
+.active{
+	background-color: rgba(255,255,255,0.2);
+	color:red;
+}
+
+
+
+
+
+.list{
+	clear: both;
+	width: 150px;
+	background-color: white;
+	color: black;
+	font-size: 16px;
+	position: absolute;
+	left: 80%;
+	top: 60px;
+}
+.list li{
+	list-style: none;
+}

@@ -1,0 +1,25 @@
+.footer{
+	width: 100%;
+	min-width: 1600px;
+	height: 300px;
+
+	font-size: 16px;
+	text-align: center;
+	background-color: white;
+}
+.footer_head{
+
+}
+.footer_main{
+	margin-left: 35%;
+	//text-align: center;
+	//margin:0 auto;
+}
+.footer_main div{
+	float: left;
+	width: 100px;
+	margin-left: 30px;
+}
+.footer_main div img{
+
+}
