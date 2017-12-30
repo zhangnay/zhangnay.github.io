@@ -16,7 +16,7 @@ $(function(){
     		[ "百度传课","百度传课.png","chuanke.com","1"],
     		[ "网易云课堂","网易云课堂.png","study.163.com","1"],
     		[ "runoob","runoob.jpg","runoob.com","1"],
-    		[ "Bootstrap","Bootstrap.png","bootstrap.com","1"],
+    		[ "Bootstrap","Bootstrap.png","bootcss.com","1"],
     		[ "百度翻译","百度翻译.png","fanyi.baidu.com/translate","1"],
     		[ "Jquery插件","jquery.png","jq22.com","1"],
     		[ "知乎","知乎.png","zhihu.com","1"],
