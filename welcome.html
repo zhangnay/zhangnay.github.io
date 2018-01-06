@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body ng-app="myApp">
 	<div class="head">
 		<div class="logo">
 			<img src="img/header_img/header1.png" class="img-circle">
@@ -60,7 +60,7 @@
 		</div>
 	</div>
 
-	<div class="main" ng-app="myApp" ng-controller="fromcontroller">
+	<div class="main"  ng-controller="fromcontroller">
 		<div class="login">
 			<br>
 			<div>
@@ -70,12 +70,13 @@
 
 				
 					<input type="text" name="name" ng-model="name" ng-minlength="2" ng-maxlength="6" required>
-					<span ng-show="myForm.name.$error.minlength && 
-					myForm.name.$touched">长度必须大于2</span>
+					<span ng-show="myForm.name.$invalid">长度必须大于2</span>
+					<p>{{name}}</p>
 				
 				<br>
 				
-					<input type="password" name="password" ng-model="password" ng-minlength="6" ng-maxlength="32" required ng-class="{'error': myForm.password.$invalid}">
+					<input type="password" name="password" ng-model="password" ng-minlength="6" 
+					ng-maxlength="32" required ng-class="{'error': myForm.password.$invalid}">
 					<span ng-show="myForm.password.$invalid">长度必须大于6</span>
 					
 				
@@ -83,8 +84,7 @@
 				
 					<button class="btn btn-primary"  
 					        type="submit"
-					        ng-disabled="myForm.name.$dirty && myForm.name.$invalid ||
-                                         myForm.password1.$dirty && myForm.password.$invalid">登陆</button>
+					        ng-disabled="myForm.$invalid">登陆</button>
 				
 			</from>
 		</div>
@@ -92,8 +92,8 @@
 	<script>
 		var app = angular.module('myApp', []);
 		app.controller('fromcontroller', function($scope) {
-			$scope.name = '';
-			$scope.password = '';
+			// $scope.name = '';
+			// $scope.password = '';
 
 			$scope.submit=function(){
 				alert("submit test");
