@@ -1,15 +1,15 @@
 $(function(){
     		//数据
     		var list=[ 
-    		["cc1","cc.jpg","cclolcc.com","1"], 
-    		["echo","echo.jpg","app-echo.com","1"], 
-    		["斗鱼","斗鱼.png","douyu.com","1"],
-    		["腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
-    		["淘宝","淘宝.png","taobao.com","1"],
-    		["百度","百度.png","baidu.com","1"],
-    		["智慧树","智慧树.png","zhihuishu.com","1"],
-    		["音悦台","音悦台.png","yinyuetai.com","1"],
-    		["a站","a站.png","www.acfun.cn","1"],
+    		[ "cc1","cc.jpg","cclolcc.com","1"], 
+    		[ "echo","echo.jpg","app-echo.com","1"], 
+    		[ "斗鱼","斗鱼.png","douyu.com","1"],
+    		[ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
+    		[ "淘宝","淘宝.png","taobao.com","1"],
+    		[ "百度","百度.png","baidu.com","1"],
+    		[ "智慧树","智慧树.png","zhihuishu.com","1"],
+    		[ "音悦台","音悦台.png","yinyuetai.com","1"],
+    		[ "a站","a站.png","www.acfun.cn","1"],
     		[ "b站","b站.jpg","bilibili.com","1"],
     		[ "百度云","百度云.jpg","pan.baidu.com/disk/home#list/path=%2F","1"],
     		[ "贴吧","贴吧.png","tieba.baidu.com","1"],
@@ -39,17 +39,63 @@ $(function(){
             [ "jump","腾讯课堂.jpg","jump.html","0"]
             ] 
 
+            //初始化页数
+            var pages=1;var maxpage=list.length;
+            //每页加载数量
+            var num=27;
+
             //根据list添加各个网站的按钮到页面中
-            var http;
-            for (var i = 0; i <27; i++) {
-                if(list[i][3]==0){
-                    http='';
-                }else{
-                    http='http://';
+            add(pages,maxpage,list,num);
+
+            $(".pages-left").click(function(){
+                pages--;
+                $(".pages-left").css('width','150px');
+                $(".pages-right").css('width','70px');
+                jugde();
+            });
+            $(".pages-right").click(function(){
+                pages++;
+                $(".pages-right").css('width','150px');
+                $(".pages-left").css('width','70px');
+                jugde();
+                
+            });
+
+            function  jugde(){
+                if(pages==1){
+                    $('.pages-left').addClass('hide');
+                    $('.pages-right').css('width','150px');
                 }
-                $('#main').append('<a href="'+http+list[i][2]+
-                    '" target="_blank"><div class="dh"><div class="img"><img src="img/导航/'+list[i][1]+'" /></div><div class="name"><p>'+
-                    list[i][0]+'</p></div</div></a>');
+                if(pages>1){
+                    $('.pages-left').removeClass('hide');
+                }
+                if(pages<Math.ceil(maxpage/num)){
+                    $('.pages-right').removeClass('hide');
+                }
+                if(pages==Math.ceil(maxpage/num)){
+                    $('.pages-right').addClass('hide');
+                    $('.pages-left').css('width','150px');
+                }
+                $('#main').html("");
+                add(pages,maxpage,list,num);
             }
 
         });
+
+function add(p,m,list,n){
+    var http;
+    for (var i = (p-1)*n; i < p*n; i++) {
+        if(i<m){
+            if(list[i][3]==0){
+                http='';
+            }else{
+                http='http://';
+            }
+            $('#main').append('<a href="'+http+list[i][2]+
+                '" target="_blank"><div class="dh"><div class="img"><img src="img/导航/'+list[i][1]+'" /></div><div class="name"><p>'+
+                list[i][0]+'</p></div</div></a>');
+        }
+    }
+}
+
+

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<mete></mete>
+	<title>block</title>
+	<link href="js/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+	<script src="js/3.3.5/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.main{
+			width: 600px;
+			height: 800px;
+			margin:50px auto;
+			background-color: gray;
+		}
+		.game{
+			width: 402px;
+			height: 800px;
+			background-color: white;
+			border: 1px solid black;
+			float: left;
+		}
+		.block{
+			width: 40px;
+			height: 40px;
+			float: left;
+			border: 1px solid gray;
+		}
+		.bg{
+			background-color: black;
+		}
+		.down{
+			background-color: blue;
+		}
+		.info{
+			width: 198px;
+			height: 800px;float: left;
+			font-size: 20px;
+
+		}
+		.cue{
+			margin:20px 0 0 19px ;
+		}
+		.next{
+			width: 160px;
+			height: 160px;
+			margin:0px 0 0 19px ;
+			background-color: white;
+		}
+		.time,.score{
+			width: 160px;
+			margin:20px 0 0 19px ;
+			background-color: white;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="main">
+		<div class="game">
+		</div>
+		<div class="info">
+			<div class="cue">下一个：</div>
+			<div class="next"></div>
+			<div class="time">时间：0s</div>
+			<div class="score">当前得分：0</div>
+			<div class="start"></div>
+			<div class="stop"></div>
+			<div class="again"></div>
+			<div class="over"></div>
+		</div>
+	</div>
+
+	<script>
+		$(function(){
+
+			var game=[
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,1,0,0,0,0,0,0],
+			[0,1,1,1,0,0,0,0,0,0]
+			];
+
+			var over=[
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0,0,0,0]
+			];
+
+			var next=[
+			[2,2,0,0],
+			[0,2,2,0],
+			[0,0,0,0],
+			[0,0,0,0]
+			];
+
+
+			var old=[
+			[0,2,0,0],
+			[2,2,2,0],
+			[0,0,0,0],
+			[0,0,0,0]
+			];
+
+
+			function addgame(){
+				for(i=0;i<game.length;i++){
+					for(j=0;j<game[i].length;j++){
+						if(game[i][j]==1){
+							$('.game').append('<div class="block"></div>');
+						}else if(game[i][j]==2){
+							$('.game').append('<div class="block down"></div>');
+						}else{
+							$('.game').append('<div class="block bg"></div>');
+						}
+					}
+				}
+			}
+			
+
+			function addnext(){
+				for(i=0;i<next.length;i++){
+					for(j=0;j<next[i].length;j++){
+						if(next[i][j]==2){
+							$('.next').append('<div class="block"></div>');
+						}else{
+							$('.next').append('<div class="block bg"></div>');
+						}
+					}
+				}
+			}
+			
+			addgame();
+			addnext();
+
+			//状态
+			var state=3;
+			//分数
+			var score=0;
+			//时间
+			var time=0;
+			//是否可以下落
+			var down=0;
+			//方块坐标
+			var x=0;var y=0;
+			x=Math.floor(Math.random()*6);
+			setInterval(function(){
+				//重置
+				if(state==1){
+					time=0;
+					score=0;
+					game=over;
+				}
+				//暂停
+				if(state==2){
+
+				}
+				//运行
+				if(state==3){
+					if(time%10==0){
+						begin();
+						y++;
+					}
+					if(time%10==0){
+						$('.time').text('时间：'+(time/10)+'.0s');
+					}else{
+						$('.time').text('时间：'+(time/10)+'s');
+					}
+					$('.score').val('当前得分：'+score);
+					time++;
+				}
+
+
+
+
+
+				function begin(){
+					
+					//加载
+					for(i=0;i<old.length;i++){
+						for(j=0;j<old[i].length;j++){
+							if(old[i][j]==2){
+								if(game[y+i][x+j]==1){
+									alert("Game Over");
+									state=1;
+									break;
+								}
+								game[y+i][x+j]=2;
+								if(game[y+i+1][x+j]==1){
+									down=1;
+								}
+								if(y+i==19){
+									down=1;
+								}
+							}
+
+						}
+					}
+					
+
+					if(down==1){
+						for(i=0;i<old.length;i++){
+							for(j=0;j<old[i].length;j++){
+								if(old[i][j]==2){
+									game[y+i][x+j]=1;
+								}
+							}
+						}
+
+						old=next;
+						//next=nexts[随机数];
+						down=0;
+						y=0;
+					}
+					
+
+
+					//移动
+					
+					//渲染
+					$('.game').html('');
+					addgame();
+					
+					//判断--如果下落方块触底则game中2->1
+
+
+
+				    //消除
+				    for(i=0;i<game.length;i++){
+				    	inter:
+				    	for(j=0;j<game[i].length;j++){
+				    		if(game[i][j]!=1){
+				    			continue inter;
+				    		}
+				    		if(j>=game[i].length){
+				    			delete game[i];
+				    			game.unshift([0,0,0,0,0,0,0,0,0,0]);
+				    			score++;
+				    			alert("消除");
+				    		}
+				    		
+				    	}
+				    }
+
+				    for(i=0;i<game.length;i++){
+				    	inter:
+				    	for(j=0;j<game[i].length;j++){
+				    		if(game[i][j]==2){
+				    			game[i][j]=0;
+				    		}
+				    	}
+				    }
+
+
+
+				}
+
+			},10);
+
+
+
+
+		});
+
+	</script>
+</body>
+</html>
