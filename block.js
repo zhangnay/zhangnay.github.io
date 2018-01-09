@@ -1,39 +1,47 @@
 $(function(){
+	//颜色
+	var color=Math.floor(Math.random()*9);
+	var colorold=Math.floor(Math.random()*9);
+	var colors=['#A98307','#F44611','#9B111E','#412227','#EA899A','#6C4675','#3E5F8A','#3F888F','#587246','#8E402A'];
 
 	//定义添加游戏方块方法
-	function addgame(){
+	function addgame(c){
 		for(i=0;i<game.length-1;i++){
 			for(j=0;j<10;j++){
 				if(game[i][j]==1){
-					$('.game').append('<div class="block"></div>');
+					$('.game').append('<div class="block bg" ></div>');
 				}else if(game[i][j]==2){
-					$('.game').append('<div class="block down"></div>');
+					$('.game').append('<div class="block down" style="background-color:'+colors[c]+';box-shadow: 5px 5px 5px '+colors[c]+';"></div>');
 				}else{
-					$('.game').append('<div class="block bg"></div>');
+					$('.game').append('<div class="block "></div>');
 				}
 			}
 		}
 	}
 
 	//定义添加即将方块方法
-	function addnext(){
+	function addnext(c){
 		for(i=0;i<next.length;i++){
 			for(j=0;j<next[i].length;j++){
 				if(next[i][j]==2){
-					$('.next').append('<div class="block"></div>');
+					$('.next').append('<div class="block bg"  style="background-color:'+colors[c]+';box-shadow: 5px 5px 5px '+colors[c]+';"></div>');
 				}else{
-					$('.next').append('<div class="block bg"></div>');
+					$('.next').append('<div class="block "></div>');
 				}
 			}
 		}
 	}
 
 	//加载方块
-	addgame();
-	addnext();
+	addgame(colorold);
+	addnext(color);
 
+
+//刷新等待时长
+var timer;
+var T=50;
 			//状态
-			var state=3;
+			var state=0;
 			//分数
 			var score=0;
 			//时间
@@ -45,12 +53,124 @@ $(function(){
 			//随机方块m,m下一个方块。mm,nn当前方块
 			var m=Math.floor(Math.random()*6);var n=Math.floor(Math.random()*3);
 			var mm=Math.floor(Math.random()*6);var nn=Math.floor(Math.random()*3);
+			
 			//随机位置
 			x=Math.floor(Math.random()*6);
+			//禁用按钮
+			contro();
+			//流程控制
+			$('.refresh').click(function(event) {
+				changes();
+			});
+			$('.start').click(function(event) {
+				changes();
+				//alert(T);
+				state=3;
+				//禁用按钮
+				contro();
+			});
+			$('.stop').click(function(event) {
+				state=2;
+				//禁用按钮
+				contro();
+			});
+			$('.again').click(function(event) {
+				changes();
+				state=1;
+				//禁用按钮
+				contro();
+			});
+			$('.over').click(function(event) {
+				state=0;
+				//时间归零
+				time=0;
+				//分数归零
+				score=0;
+				//初始化游戏数组
+				initgame();
+				//初始化即将出现的方块
+				initold();
+				//禁用按钮
+				contro();
+			});
 
+			function contro(){
+				if(state==0){
+					//alert('state:'+state);
+					$('.start').attr('disabled',false);
+					$('.stop').attr('disabled','');
+					$('.again').attr('disabled','');
+					$('.over').attr('disabled','');
+				}
+				if(state==1){
+					$('.start').attr('disabled','');
+					$('.stop').attr('disabled',false);
+					$('.again').attr('disabled',false);
+					$('.over').attr('disabled',false);
+				}
+				if(state==2){
+					//alert('state:'+state);
+					$('.start').attr('disabled',false);
+					$('.stop').attr('disabled','');
+					$('.again').attr('disabled',false);
+					$('.over').attr('disabled',false);
+				}
+				if(state==3){
+					//alert('state:'+state);
+					$('.start').attr('disabled','');
+					$('.stop').attr('disabled',false);
+					$('.again').attr('disabled',false);
+					$('.over').attr('disabled',false);
+				}
+			}
+
+			function changes(){
+				var S=$('.speed input').val();
+				
+				if(S!=""){
+					if(S%10==0){
+
+
+						alert(S);
+						T=parseInt($('.speed input').val());
+						$('.speed input').attr("placeholder",'当前速度为：'+S);
+						$('.speed input').val('');
+						clearInterval(timer);
+						Tim();
+					}else{
+						$('.speed input').attr("placeholder",'请输入整数！');
+						$('.speed input').val('');
+					}
+				}else{
+					$('.speed input').attr("placeholder",'请输入数值！');
+				}
+			}
+
+			function initgame(){
+				for(i=0;i<game.length;i++){
+					for(j=0;j<game[i].length;j++){
+						game[i][j]=0;
+					}
+				}
+			}
+
+			function initold(){
+						//将下个方块变为当前方块
+						old=next;
+						mm=m;
+						nn=n;
+						//重新随机下一个方块信息
+						m=Math.floor(Math.random()*6);n=Math.floor(Math.random()*3);
+						x=Math.floor(Math.random()*6);
+						colorold=color;
+						color=Math.floor(Math.random()*9);
+						next=blocks[m][n];
+						y=0;
+					}
 
 			//计时器--循环
-			setInterval(function(){
+			function Tim(){
+				timer=setInterval(function(){
 				//流程控制
 				controller();
 				//重置
@@ -60,11 +180,8 @@ $(function(){
 					//分数归零
 					score=0;
 					//初始化游戏数组
-					for(i=0;i<game.length;i++){
-						for(j=0;j<game[i].length;j++){
-							game[i][j]=0;
-						}
-					}
+					initgame();
+					initold();
 					//重新开始游戏
 					state=3;
 				}
@@ -85,12 +202,12 @@ $(function(){
 						y++;
 					}
 					//刷新时间---没有小数补上'.00S'  一位小数补上'.0S'  两位小数补上'S'
-					if(time%100==0){
-						$('.time').text('时间：'+(time/100)+'.00s');
-					}else if(time%10==0){
-						$('.time').text('时间：'+(time/100)+'0s');
+					if(time%(1000/T)==0){
+						$('.time').text('时间：'+(time/(1000/T))+'.00s');
+					}else if(time%(100/T)==0){
+						$('.time').text('时间：'+(time/(1000/T))+'0s');
 					}else{
-						$('.time').text('时间：'+(time/100)+'s');
+						$('.time').text('时间：'+(time/(1000/T))+'s');
 					}
 					//刷新分数
 					$('.score').val('当前得分：'+score);
@@ -227,7 +344,7 @@ $(function(){
 											//游戏结束重开
 											state=1;
 											//弹出提示信息
-											alert("Game Over:"+"g:"+game[y+i][x+j]+'x+j'+(x+j)+'y+i'+(y+i));
+											alert("Game Over");
 											//退出循环至标记处
 											break OUT;
 										}
@@ -264,24 +381,17 @@ $(function(){
 							}
 						}
 
-						//将下个方块变为当前方块
-						old=next;
-						mm=m;
-						nn=n;
-						//重新随机下一个方块信息
-						m=Math.floor(Math.random()*6);n=Math.floor(Math.random()*3);
-						x=Math.floor(Math.random()*6);
-						next=blocks[m][n];
+						initold();
 						down=0;
-						y=0;
 					}
+
 
 
 					//渲染--将方块渲染到游戏区域
 					$('.game').html('');
-					addgame();
+					addgame(colorold);
 					$('.next').html('');
-					addnext();
+					addnext(color);
 
 
 
@@ -337,6 +447,7 @@ $(function(){
 
 				}
 				//每0.01秒循环一次；
-			},10);
+			},T);
+}
 //2018.1.7号下午+2018.1.8号下午    2018.1.8完结
 });

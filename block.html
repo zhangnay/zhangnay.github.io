@@ -7,10 +7,20 @@
 	<script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
 	<script src="js/3.3.5/js/bootstrap.min.js"></script>
 	<style type="text/css">
+		body{
+			background-image: url('img/bg/bg0.png');
+		}
+		.header{
+			font-size: 34px;
+			text-align: center;
+		}
+		.header img{
+			width:600px;
+		}
 		.main{
 			width: 600px;
 			height: 800px;
-			margin:50px auto;
+			margin:-20px auto;
 			background-color: gray;
 		}
 		.game{
@@ -26,8 +36,11 @@
 			float: left;
 			border: 1px solid gray;
 		}
+		
+
+
 		.bg{
-			background-color: black;
+			background-color: gray;box-shadow: 2px 2px 5px black;
 		}
 		.down{
 			background-color: blue;
@@ -47,15 +60,22 @@
 			margin:0px 0 0 19px ;
 			background-color: white;
 		}
-		.time,.score{
+		.time,.score,.speed input{
 			width: 160px;
 			margin:20px 0 0 19px ;
 			background-color: white;
+			border-radius: 3px ;
+		}
+
+		.refresh,.start,.stop,.again,.over{
+			width: 160px;
+			margin:10px 0 0 19px;
 		}
 	</style>
 
 </head>
 <body>
+	<div class="header"><img src="img/俄罗斯方块1.png"></div>
 	<div class="main">
 		<div class="game">
 		</div>
@@ -64,10 +84,12 @@
 			<div class="next"></div>
 			<div class="time">时间：0s</div>
 			<div class="score">当前得分：0</div>
-			<div class="start"></div>
-			<div class="stop"></div>
-			<div class="again"></div>
-			<div class="over"></div>
+			<div class="speed"><input type="text" name="speed" placeholder="当前速度为：50"></div>
+			<div class="refresh btn btn-default">修改速度</div>
+			<div class="start btn btn-default">开始</div>
+			<div class="stop btn btn-default">暂停</div>
+			<div class="again btn btn-default">重来</div>
+			<div class="over btn btn-default">结束</div>
 		</div>
 	</div>
 
