@@ -36,7 +36,9 @@ $(function(){
             [ "方块流星雨","腾讯课堂.jpg","方块流星雨.html","0"],
             [ "电子时钟","腾讯课堂.jpg","time.html","0"],
             [ "华为时钟","腾讯课堂.jpg","华为时钟.html","0"],
-            [ "jump","腾讯课堂.jpg","jump.html","0"]
+            [ "jump","腾讯课堂.jpg","jump.html","0"],
+            [ "俄罗斯方块","俄.png","block.html","0"],
+            [ "欢迎页","腾讯课堂.jpg","welcome.html","0"]
             ] 
 
             //初始化页数
@@ -58,7 +60,6 @@ $(function(){
                 $(".pages-right").css('width','150px');
                 $(".pages-left").css('width','70px');
                 jugde();
-                
             });
 
             function  jugde(){

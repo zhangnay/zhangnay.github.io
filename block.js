@@ -39,7 +39,7 @@ $(function(){
 
 //刷新等待时长
 var timer;
-var T=50;
+var T=50;var Told=T;
 			//状态
 			var state=0;
 			//分数
@@ -60,10 +60,10 @@ var T=50;
 			contro();
 			//流程控制
 			$('.refresh').click(function(event) {
-				changes();
+				changes(0);
 			});
 			$('.start').click(function(event) {
-				changes();
+				changes(1);
 				//alert(T);
 				state=3;
 				//禁用按钮
@@ -75,7 +75,7 @@ var T=50;
 				contro();
 			});
 			$('.again').click(function(event) {
-				changes();
+				changes(2);
 				state=1;
 				//禁用按钮
 				contro();
@@ -124,15 +124,12 @@ var T=50;
 				}
 			}
 
-			function changes(){
+			function changes(i){
 				var S=$('.speed input').val();
-				
 				if(S!=""){
 					if(S%10==0){
-
-
-						alert(S);
-						T=parseInt($('.speed input').val());
+						Told=T;
+						T=S;
 						$('.speed input').attr("placeholder",'当前速度为：'+S);
 						$('.speed input').val('');
 						clearInterval(timer);
@@ -140,9 +137,16 @@ var T=50;
 					}else{
 						$('.speed input').attr("placeholder",'请输入整数！');
 						$('.speed input').val('');
+						clearInterval(timer);
+						Tim();
 					}
 				}else{
-					$('.speed input').attr("placeholder",'请输入数值！');
+					if(i==0){
+						$('.speed input').attr("placeholder",'请输入数值！');
+					}else{
+						clearInterval(timer);
+						Tim();
+					}
 				}
 			}
 
