@@ -24,6 +24,10 @@ $(function(){
     		[ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
     		[ "豆瓣FM","豆瓣FM.png","douban.fm//","1"],
             [ "腾讯课堂","腾讯课堂.jpg","ke.qq.com/","1"],
+            [ "百度云","百度云.png","cloud.baidu.com/","1"],
+            [ "小程序开发","小程序.jpg","mp.weixin.qq.com/debug/wxadoc/dev/devtools/new.html","1"],
+         
+            
 
 
             [ "慕课网","慕课网.jpg","imooc.com/","1"],
