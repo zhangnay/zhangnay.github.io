@@ -1,6 +1,0 @@
-<bgsound src="/jscss/demoimg/201405/py.MP3" loop="-1">
-<table width="775" height="741" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="775" height="433" background="/jscss/demoimg/bgdemo2.jpg">&nbsp;</td>
-  </tr>
-</table>
