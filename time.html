@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script> 
+</head>
+<body>
+
+    <canvas id="canvas" width="1900" height="950" style="border: solid 0px red;display: block;margin: 0px auto;">
+        暂不支持此浏览器，请更换浏览器后再试！
+    </canvas>
+
+    <div id="div"></div>
+    <script >
+
+
+        window.onload=function(){
+            var canvas=document.getElementById("canvas");
+            context=canvas.getContext("2d");
+
+            //圆
+            var arc=new Array();
+            for (i =0; i <= 1000; i++) {
+                arc[i]={x:0,y:0,color:0,d:0,speed:1};
+            }
+            //x
+            var chars=new Array();
+            for (i =0; i <= 100; i++) {
+                chars[i]=(i+1)*15;
+            }
+            //y
+            var charsy=new Array();
+            for (i =0; i <= 20; i++) {
+                charsy[i]=(i+1)*15;
+            }
+
+            //数字坐标
+            var numxy=new Array();
+            var numArcxy=new Array();
+            
+            //设置数字
+            var num=[
+            //0-30
+            [[0,0,1,1,1,0,0],[0,1,1,0,1,1,0],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[0,1,1,0,1,1,0],[0,0,1,1,1,0,0]],
+            //1-27
+            [[0,0,0,1,1,0,0],[0,1,1,1,1,0,0],[0,0,0,1,1,0,0],[0,0,0,1,1,0,0],[0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],[0,0,0,1,1,0,0],[0,0,0,1,1,0,0],[0,0,0,1,1,0,0],[1,1,1,1,1,1,1]],
+            //2-32
+            [[0,1,1,1,1,1,0],[1,1,0,0,0,1,1],[0,0,0,0,0,1,1],[0,0,0,0,1,1,0],[0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],[0,1,1,0,0,0,0],[1,1,0,0,0,0,0],[1,1,0,0,0,1,1],[1,1,1,1,1,1,1]],
+            //3-31------
+            [[1,1,1,1,1,1,1],[0,0,0,0,0,1,1],[0,0,0,0,1,1,0],[0,0,0,1,1,0,0],[0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],[0,0,0,0,0,1,1],[0,0,0,0,0,1,1],[1,1,0,0,0,1,1],[0,1,1,1,1,1,0]],
+            //4-34
+            [[0,0,0,0,1,1,0],[0,0,0,1,1,1,0],[0,0,1,1,1,1,0],[0,1,1,0,1,1,0],[1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],[0,0,0,0,1,1,0],[0,0,0,0,1,1,0],[0,0,0,0,1,1,0],[0,0,0,1,1,1,1]],
+            //5-34
+            [[1,1,1,1,1,1,1],[1,1,0,0,0,0,0],[1,1,0,0,0,0,0],[1,1,1,1,1,1,0],[0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],[0,0,0,0,0,1,1],[0,0,0,0,0,1,1],[1,1,0,0,0,1,1],[0,1,1,1,1,1,0]],
+            //6-34
+            [[0,0,0,0,1,1,0],[0,0,1,1,0,0,0],[0,1,1,0,0,0,0],[1,1,0,0,0,0,0],[1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[0,1,1,1,1,1,0]],
+            //7-27
+            [[1,1,1,1,1,1,1],[1,1,0,0,0,1,1],[0,0,0,0,1,1,0],[0,0,0,0,1,1,0],[0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],[0,0,1,1,0,0,0],[0,0,1,1,0,0,0],[0,0,1,1,0,0,0],[0,0,1,1,0,0,0]],
+            //8-43
+            [[0,1,1,1,1,1,0],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[0,1,1,1,1,1,0]],
+            //9-43
+            [[0,1,1,1,1,1,0],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[1,1,0,0,0,1,1],[0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],[0,0,0,0,0,1,1],[0,0,0,0,1,1,0],[0,0,0,1,1,0,0],[0,1,1,0,0,0,0]]];
+
+
+            var style=[[1,1,1,1]];
+
+            //三维数组实验
+            //ss=style[0];
+            //var arr = new Array([[1,2],[3,4]],[[5,6],[7,8]]);
+            //alert(arr[ss][1][0]);
+
+            //颜色
+            var colorchars=['#A98307','#F44611','#9B111E','#412227','#EA899A','#6C4675','#3E5F8A','#3F888F','#587246','#8E402A'];
+
+            var timex=100; var timey=100;
+            var time= new Date();
+
+            var Hours=time.getHours(); var Min=time.getMinutes(); var Secon=time.getSeconds(); 
+            //生成时间数组
+            var order =new Array(6);
+            if(Hours>=10){
+
+                order[0]=parseInt(Hours/10);
+                order[1]=parseInt(Hours%10);
+            }else{
+                order[0]=0;
+                order[1]=Hours;
+            }
+            if(Min>=10){
+                order[2]=parseInt(Min/10);
+                order[3]=parseInt(Min%10);
+            }else{
+                order[2]=0;
+                order[3]=Min;
+            }
+            if(Secon>=10){
+                order[4]=parseInt(Secon/10);
+                order[5]=parseInt(Secon%10);
+            }else{
+                order[4]=0;
+                order[5]=Secon;
+            }
+            
+            //根据时间生成数字坐标
+            var t=0;
+            var mm=240;
+            //数字坐标循环
+            for(m=0;m<6;m++){
+                for(j=0;j<10;j++){
+                    for(n=0;n<7;n++){
+                        if(num[order[m]][j][n]){
+                            tx=timex+n*30+m*mm;
+                            if(m>=2){
+                                tx=timex+n*30+m*mm+100;
+                            }
+                            if(m>=4){
+                                tx=timex+n*30+m*mm+240;
+                            }
+                            ty=timey+j*30;
+                            numxy[t]=[tx,ty];
+                            t++;
+                        }
+                    }
+                }
+            }
+            
+            //小球初始化
+            for (i = 0; i <numxy.length; i++) {
+                c=Math.floor(Math.random()*10);
+                d=Math.floor(Math.random()*2);
+                arc[i]={x:numxy[i][0],y:numxy[i][1],color:colorchars[c],d:d,speed:1};
+            }
+
+
+            //开始运动
+            var tnum=0;
+            
+            var myVar=setInterval(function(){
+
+                context.clearRect(0,0,1900,950);
+
+                
+                //初始化圆   初始化数字
+                if(tnum==30){
+                    var orderArc=[0,0,0,0,0,1];
+                    order[5]++;
+                    if(order[5]==10){
+                        order[5]=0;
+                        order[4]++;
+                        orderArc[4]=1;
+                    }
+                    if(order[4]==6){
+                        order[4]=0;
+                        order[3]++;
+                        orderArc[3]=1;
+                    }
+                    if(order[3]==10){
+                        order[3]=0;
+                        order[2]++;
+                        orderArc[2]=1;
+                    }
+                    if(order[2]==6){
+                        order[2]=0;
+                        order[1]++;
+                        orderArc[1]=1;
+                    }
+                    if(order[1]==10){
+                        order[1]=0;
+                        order[0]++;
+                        orderArc[0]=1;
+                    }
+                    if(order[0]==2&&order[1]==5){
+                        order[0]=0;
+                        orderArc[0]=1;
+                    }
+
+                    //根据时间生成数字坐标
+                    t=0; mm=240;tArc=0;
+                    //数字坐标循环
+                    for(m=0;m<6;m++){
+                        for(j=0;j<10;j++){
+                            for(n=0;n<7;n++){
+
+                                if(num[order[m]][j][n]){
+                                    tx=timex+n*30+m*mm;
+                                    if(m>=2){
+                                        tx=timex+n*30+m*mm+100;
+                                    }
+                                    if(m>=4){
+                                        tx=timex+n*30+m*mm+240;
+                                    }
+                                    ty=timey+j*30;
+
+                                    if(orderArc[m]){
+                                        numArcxy[tArc]=[tx,ty];
+                                        tArc++; 
+                                    }
+                                    numxy[t]=[tx,ty];
+                                    t++; 
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    
+                    //小球初始化
+                    var i1=0;
+                    for (i = 0; i1 <numArcxy.length; i++) {
+                        if(typeof(arc[i].x)=="undefined"){
+                            c=Math.floor(Math.random()*10);
+                            d=Math.floor(Math.random()*2);
+                            arc[i]={x:numArcxy[i1][0],y:numArcxy[i1][1],color:colorchars[c],d:d,speed:1};
+                            i1++;
+                        }else if(arc[i].x==0){
+                            c=Math.floor(Math.random()*10);
+                            d=Math.floor(Math.random()*2);
+                            s=Math.floor(Math.random()*5)+3;
+                            arc[i]={x:numArcxy[i1][0],y:numArcxy[i1][1],color:colorchars[c],d:d,speed:s};
+                            i1++;
+                        }
+                    }
+                    tnum=0;
+                }
+                tnum++;
+
+                //背景圆
+                for(t=0;t<numxy.length;t++){
+                    context.beginPath();
+                    context.arc(numxy[t][0],numxy[t][1],15,0,2*Math.PI);
+                    context.fillStyle="#9E9764";
+                    context.fill();
+                }
+
+                debugger;
+                context.beginPath();
+                context.arc(570,200,15,0,2*Math.PI);
+                context.arc(600,200,15,0,2*Math.PI);
+                context.arc(570,230,15,0,2*Math.PI);
+                context.arc(600,230,15,0,2*Math.PI);
+                context.arc(570,260,15,0,2*Math.PI);
+                context.arc(600,260,15,0,2*Math.PI);
+                context.fill();
+                context.beginPath();
+                context.arc(570*2+30,200,15,0,2*Math.PI);
+                context.arc(600*2,200,15,0,2*Math.PI);
+                context.arc(570*2+30,230,15,0,2*Math.PI);
+                context.arc(600*2,230,15,0,2*Math.PI);
+                context.arc(570*2+30,260,15,0,2*Math.PI);
+                context.arc(600*2,260,15,0,2*Math.PI);
+                context.fillStyle="#9E9764";
+                context.fill();
+                
+
+                //alert(arc.length);
+                //显示时根据时分秒的位置偏移坐标
+                for(i=0;i<=arc.length;i++){
+                    //debugger;
+                    if(arc[i].y>=920){
+                        if(arc[i].speed<1.5&&arc[i].speed>-1.5){
+                            arc[i].speed=0;
+                            arc[i].y=930;
+                        }else{
+                            arc[i].speed=0-arc[i].speed*0.6;
+                            
+                        }
+
+                    }
+
+                    arc[i].y=arc[i].y+arc[i].speed;
+                    arc[i].speed+=1;
+
+                    if(arc[i].x<1900&&0<arc[i].x){
+                        if(arc[i].d==0){
+                            arc[i].x=arc[i].x-4;
+                        }else{
+                            arc[i].x=arc[i].x+4;
+                        }
+                    }else{
+                        nx=Math.floor(Math.random()*100);
+                        ny=Math.floor(Math.random()*20);
+                        arc[i].x=0;
+                        arc[i].y=0;
+                        arc[i].speed=1;
+                    }
+
+                    context.beginPath();
+                    context.arc(arc[i].x,arc[i].y,15,0,2*Math.PI);
+                    context.fillStyle=arc[i].color;
+                    context.fill();
+
+                    context.font="15px Georgia ";
+                    //context.strokeText(i,arc[i].x-6,arc[i].y+5);
+                    //context.strokeText(time.getHours(),100,100);
+                    //context.strokeText(arc[2].speed,500,300);
+                }
+            },50);
+context.stroke();
+}
+
+</script>
+
+</body>
+</html>
