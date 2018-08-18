@@ -7,7 +7,7 @@ $(function(){
     		[ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
     		[ "淘宝","淘宝.png","taobao.com","1"],
     		[ "百度","百度.png","baidu.com","1"],
-    		[ "优酷","优酷.jpg","www.youku.com/","1"],
+    		[ "智慧树","智慧树.png","zhihuishu.com","1"],
     		[ "音悦台","音悦台.png","yinyuetai.com","1"],
     		[ "a站","a站.png","www.acfun.cn","1"],
     		[ "b站","b站.jpg","bilibili.com","1"],
@@ -27,9 +27,9 @@ $(function(){
             [ "百度云","百度云.png","cloud.baidu.com/","1"],
             [ "小程序开发","小程序.jpg","mp.weixin.qq.com/debug/wxadoc/dev/devtools/new.html","1"],
          
-           
+            
 
-            [ "智慧树","智慧树.png","zhihuishu.com","1"],
+
             [ "慕课网","慕课网.jpg","imooc.com/","1"],
             [ "牛客网","牛客网.jpg","www.nowcoder.com/3002767","1"],
             [ "leetcode","leetcode.png","leetcode.com/","1"],
@@ -97,7 +97,7 @@ function add(p,m,list,n){
                 http='http://';
             }
             $('#main').append('<a href="'+http+list[i][2]+
-                '" target="_blank"><div class="dh col-md-1"><div class="img"><img src="img/导航/'+list[i][1]+'" /></div><div class="name"><p>'+
+                '" target="_blank"><div class="dh"><div class="img"><img src="img/导航/'+list[i][1]+'" /></div><div class="name"><p>'+
                 list[i][0]+'</p></div</div></a>');
         }
     }
