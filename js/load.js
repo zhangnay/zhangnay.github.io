@@ -7,7 +7,6 @@ $(function(){
     		[ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
     		[ "淘宝","淘宝.png","taobao.com","1"],
     		[ "百度","百度.png","baidu.com","1"],
-    		[ "智慧树","智慧树.png","zhihuishu.com","1"],
     		[ "音悦台","音悦台.png","yinyuetai.com","1"],
     		[ "a站","a站.png","www.acfun.cn","1"],
     		[ "b站","b站.jpg","bilibili.com","1"],
@@ -25,15 +24,14 @@ $(function(){
     		[ "豆瓣FM","豆瓣FM.png","douban.fm//","1"],
             [ "腾讯课堂","腾讯课堂.jpg","ke.qq.com/","1"],
             [ "百度云","百度云.png","cloud.baidu.com/","1"],
-            [ "小程序开发","小程序.jpg","mp.weixin.qq.com/debug/wxadoc/dev/devtools/new.html","1"],
-         
-            
-
-
             [ "慕课网","慕课网.jpg","imooc.com/","1"],
             [ "牛客网","牛客网.jpg","www.nowcoder.com/3002767","1"],
             [ "leetcode","leetcode.png","leetcode.com/","1"],
             [ "github","github.png","github.com/","1"],
+
+
+            [ "小程序开发","小程序.jpg","mp.weixin.qq.com/debug/wxadoc/dev/devtools/new.html","1"],
+            [ "智慧树","智慧树.png","zhihuishu.com","1"],
             [ "凡科","凡科.jpg","www.faisco.cn/portal.jsp/","1"],
             [ "58","58.jpg","cq.58.com/","1"],
             [ "汇博","汇博.jpg","www.huibo.com/","1"],
