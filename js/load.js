@@ -21,7 +21,7 @@ $(function(){
     		[ "知乎","知乎.png","zhihu.com","1"],
     		[ "素材中国","素材中国.jpg","sccnn.com","1"],
     		[ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
-    		[ "豆瓣FM","豆瓣FM.png","douban.fm//","1"],
+    		[ "Neets","neets.png","neets.cc","1"],
             [ "腾讯课堂","腾讯课堂.jpg","ke.qq.com/","1"],
             [ "百度云","百度云.png","cloud.baidu.com/","1"],
             [ "慕课网","慕课网.jpg","imooc.com/","1"],
