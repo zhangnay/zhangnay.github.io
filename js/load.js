@@ -1,7 +1,7 @@
 $(function(){
     		//数据
     		var list=[ 
-    		[ "cc1","cc.jpg","cclolcc.com","1"], 
+    		[ "CUPFOX","CUPFOX.png","www.cupfox.com/","1"], 
     		[ "echo","echo.jpg","app-echo.com","1"], 
     		[ "斗鱼","斗鱼.png","douyu.com","1"],
     		[ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
@@ -29,7 +29,7 @@ $(function(){
             [ "leetcode","leetcode.png","leetcode.com/","1"],
             [ "github","github.png","github.com/","1"],
 
-
+            [ "cc1","cc.jpg","cclolcc.com","1"], 
             [ "小程序开发","小程序.jpg","mp.weixin.qq.com/debug/wxadoc/dev/devtools/new.html","1"],
             [ "智慧树","智慧树.png","zhihuishu.com","1"],
             [ "凡科","凡科.jpg","www.faisco.cn/portal.jsp/","1"],
