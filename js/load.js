@@ -3,7 +3,7 @@ $(function(){
     		var list=[ 
     		[ "CUPFOX","CUPFOX.png","www.cupfox.com/","1"], 
     		[ "echo","echo.jpg","app-echo.com","1"], 
-    		[ "斗鱼","斗鱼.png","douyu.com","1"],
+    		[ "芒果TV","芒果TV.jpg","www.mgtv.com/","1"],
     		[ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
     		[ "淘宝","淘宝.png","taobao.com","1"],
     		[ "百度","百度.png","baidu.com","1"],
