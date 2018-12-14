@@ -7,7 +7,7 @@ $(function(){
     		[ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
     		[ "淘宝","淘宝.png","taobao.com","1"],
     		[ "百度","百度.png","baidu.com","1"],
-    		[ "音悦台","音悦台.png","yinyuetai.com","1"],
+    		[ "IfKdy","IfKdy.png","www.ifkdy.com/","1"],
     		[ "a站","a站.png","www.acfun.cn","1"],
     		[ "b站","b站.jpg","bilibili.com","1"],
     		[ "百度云","百度云.jpg","pan.baidu.com/disk/home#list/path=%2F","1"],
