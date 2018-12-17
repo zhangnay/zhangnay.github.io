@@ -11,7 +11,7 @@ $(function(){
     		[ "a站","a站.png","www.acfun.cn","1"],
     		[ "b站","b站.jpg","bilibili.com","1"],
     		[ "百度云","百度云.jpg","pan.baidu.com/disk/home#list/path=%2F","1"],
-    		[ "贴吧","贴吧.png","tieba.baidu.com","1"],
+    		[ "豆瓣","豆瓣.jpg","www.douban.com","1"],
     		[ "百度传课","百度传课.png","chuanke.com","1"],
     		[ "网易云课堂","网易云课堂.png","study.163.com","1"],
     		[ "runoob","runoob.jpg","runoob.com","1"],
@@ -29,6 +29,7 @@ $(function(){
             [ "leetcode","leetcode.png","leetcode.com/","1"],
             [ "github","github.png","github.com/","1"],
 
+            [ "贴吧","贴吧.png","tieba.baidu.com","1"],
             [ "cc1","cc.jpg","cclolcc.com","1"], 
             [ "小程序开发","小程序.jpg","mp.weixin.qq.com/debug/wxadoc/dev/devtools/new.html","1"],
             [ "智慧树","智慧树.png","zhihuishu.com","1"],
