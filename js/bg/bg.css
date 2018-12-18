@@ -4,7 +4,8 @@
 	z-index: -2;
 }
 #foreground{
-	border: solid 1px black;display: block;margin: -30px -10px;
+	/*border: solid 1px black;*/
+	display: block;margin: -30px -10px;
 	position: absolute;
 	z-index: -1;
 }

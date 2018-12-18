@@ -2,27 +2,34 @@
 $(function(){
 	var start=0;
 	
-	$('#body').before('<div><canvas id="foreground" width="1920" height="1024">Browser version not supported canvas£¡</canvas></div>');
+	$('#body').before('<div><canvas id="foreground" width="1920" height="900">Browser version not supported canvas£¡</canvas></div>');
 	var fg=document.getElementById("foreground");
 	F=fg.getContext("2d");
-	
+	var timer;
 	var demo=0;var rgb="rgba(22,160,133, 0.1)";
 	document.onclick=function(ev){
 		var mouse=getMousePos(ev);
 		//alert("x:"+mouse.x+"y:"+mouse.y);
 		if(1780<mouse.x&&mouse.x<1820&&780<mouse.y&&mouse.y<820){
+			console.log(start);
 			demo=1;
+
 			if(start==0){
 				begin();
 				rgb="rgba(0, 0, 0, 0.1)"
 				start=1;
+			}else if(start==1){
+				start=0;
+				rgb="rgba(22,160,133, 0.1)"
+				end();
 			}
+			
 		}
 	}
 
-	
+	//旋转的圆
 	var i=0;
-	var timer=setInterval(function(){
+	timer=setInterval(function(){
 		//F.fillText("demo:"+demo,1500,800);
 		if(demo>=1){
 			demo++;
@@ -51,20 +58,29 @@ $(function(){
 		F.beginPath();
 		F.arc(twox,twoy,5,0,2*Math.PI);
 		F.fill();
-		
+		if(i%2==0){
+			rgb="rgba(0,0,0, 0)";
+		}else{
+			rgb="rgba(0,0,0, 0.1)";
+		}
 		
 		F.fillStyle = rgb;
 		F.fillRect(1770, 770, 60, 60);
-	},20);
+	},15);
 
 	function begin(){
-		$('#body').before('<div><canvas id="canvas" width="1920" height="1024">Browser version not supported canvas£¡</canvas></div>');
+		$('#body').before('<div id="cans"><canvas id="canvas" width="1920" height="900">Browser version not supported canvas£¡</canvas></div>');
 		star();
-		document.body.style.overflow="hidden";//隐藏滚动条
+		// document.body.style.overflow="hidden";//隐藏滚动条
 	}
 
 });
-
+var timer;
+function end(){
+	$('#cans').remove();
+	clearTimeout(timer);
+	console.log('11');
+}
 
 function getMousePos(ev){
 	if(ev.pageX || ev.pageY){
@@ -84,44 +100,48 @@ function star(){
 	var time=0;
 
 
-	var timer=setInterval(function(){
-	//渐隐
-	C.fillStyle = "rgba(0, 0, 0, 0.1)";
-	C.fillRect(0, 0, 1920, 1080);
-	bgs.forEach(function(star){
-		C.fillStyle="white";
-		C.fillRect(star.x,star.y,star.size,star.size);
-	});
-				//C.clearRect(0,0,1920,1080);
-				list.forEach(function(one, index, array){
-					if(one[0].y>=(600+one[0].size*30)){
-						one[0].d+=1;
-						if(one[0].d==100){
-							list.splice(index,1);
-							alert("s");
-						}
-						
-					}else{
-						one.forEach(function(o, index, array){
-							C.fillStyle=color[index];
-							C.fillRect(o.x,o.y,o.size,o.size);
-							if(o.y<1100){
-								o.y+=o.s;
-							}
-						});
+	timer=setInterval(function(){
+		//渐隐
+		C.fillStyle = "rgba(0, 0, 0, 0.1)";
+		C.fillRect(0, 0, 1920, 1080);
+		//重绘背景
+		bgs.forEach(function(star){
+			C.fillStyle="white";
+			C.fillRect(star.x,star.y,star.size,star.size);
+		});
+
+		//C.clearRect(0,0,1920,1080);
+		list.forEach(function(one, index, array){
+			if(one[0].y>=(600+one[0].size*30)){
+				one[0].d+=1;
+				// console.log(one[0].d);
+				if(one[0].d==100){
+					list.splice(index,1);
+					// alert("s");
+				}			
+			}else{
+
+				one.forEach(function(o, index, array){
+					//重绘Star
+					C.fillStyle=color[index];
+					C.fillRect(o.x,o.y,o.size,o.size);
+					if(o.y<1100){
+						o.y+=o.s;//下落
+						o.x-=o.s/4;//横漂
 					}
-					
 				});
-				time++;
-				if(time%5==0){
-					list.push(one());
-					time=0;
-				}
-			},20);
-
-
-
+			}
+						
+		});
+		//计时新增star
+		time++;
+		if(time%5==0){
+			list.push(one());
+			time=0;
+		}
+	},20);
 }
+
 
 function bg(){
 	var bgs=new Array();
