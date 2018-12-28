@@ -70,7 +70,7 @@ li{
 	height:140px;
 }
 
-}
+
 .img img{
 	width: 70%;
 	height:70%;
@@ -78,6 +78,7 @@ li{
 	transition: 0.15s;
     -webkit-transition: 0.15s; /* Safari */
 }
+
 .img_backC{
 	background:white;
 }
