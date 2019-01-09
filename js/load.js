@@ -6,32 +6,30 @@ $(function(){
     		[ "芒果TV","芒果TV.jpg","www.mgtv.com/","1"],
     		
     		[ "淘宝","淘宝.png","taobao.com","1" ],
-    		[ "echo","echo.jpg","app-echo.com","1"], 
+    		[ "Echo","echo.jpg","app-echo.com","1"], 
             [ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
     		[ "IfKdy","IfKdy.png","www.ifkdy.com/","1"],
-    		[ "a站","a站.png","www.acfun.cn","1"],
-    		[ "b站","b站.jpg","bilibili.com","1"],
+    		[ "A站","a站.png","www.acfun.cn","1"],
+    		[ "B站","b站.jpg","bilibili.com","1"],
     		[ "豆瓣","豆瓣.png","www.douban.com","1"],
     		[ "百度传课","百度传课.png","chuanke.com","1"],
     		[ "网易云课堂","网易云课堂.png","study.163.com","1"],
-    		[ "runoob","runoob.jpg","runoob.com","1"],
+    		[ "Runoob","runoob.jpg","runoob.com","1"],
     		[ "Bootstrap","Bootstrap.png","bootcss.com","1"],
     		[ "百度翻译","百度翻译.png","fanyi.baidu.com/translate","1"],
     		[ "Jquery插件","jquery.png","jq22.com","1"],
     		[ "知乎","知乎.png","zhihu.com","1"],
-    		[ "素材中国","素材中国.jpg","sccnn.com","1"],
-    		
+    		[ "百度脑图","百度脑图.png","naotu.baidu.com/","1"],
     		[ "Neets","neets.png","neets.cc","1"],
             [ "腾讯课堂","腾讯课堂.jpg","ke.qq.com/","1"],
-            
             [ "慕课网","慕课网.jpg","imooc.com/","1"],
             [ "牛客网","牛客网.jpg","www.nowcoder.com/3002767","1"],
-            [ "leetcode","leetcode.png","leetcode.com/","1"],
-            [ "github","github.png","github.com/","1"],
+            [ "Leetcode","leetcode.png","leetcode.com/","1"],
+            [ "Github","github.png","github.com/","1"],
 
             
             [ "百度","百度.png","baidu.com","1","1"],
-            
+            [ "素材中国","素材中国.jpg","sccnn.com","1"],
             [ "百度云","百度云.jpg","pan.baidu.com/disk/home#list/path=%2F","1"],
             [ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
             [ "百度云","百度云.png","cloud.baidu.com/","1"],
@@ -46,7 +44,7 @@ $(function(){
             [ "方块流星雨","腾讯课堂.jpg","方块流星雨.html","0"],
             [ "电子时钟","腾讯课堂.jpg","time.html","0"],
             [ "华为时钟","腾讯课堂.jpg","华为时钟.html","0"],
-            [ "jump","腾讯课堂.jpg","jump.html","0"],
+            [ "Jump","腾讯课堂.jpg","jump.html","0"],
             [ "俄罗斯方块","俄.png","block.html","0"],
             [ "欢迎页","腾讯课堂.jpg","welcome.html","0"]
             ] 
@@ -98,7 +96,7 @@ function add(p,m,list,n){
     for (var i = (p-1)*n; i < p*n; i++) {
         if(i<m){
             if(list[i][3]==0){
-                http='';
+                http='page/';
             }else{
                 http='http://';
             }
