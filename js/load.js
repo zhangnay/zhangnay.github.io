@@ -4,9 +4,9 @@ $(function(){
     		[ "CUPFOX","CUPFOX.png","www.cupfox.com/","1","1"], 
     		
     		[ "芒果TV","芒果TV.jpg","www.mgtv.com/","1"],
+            [ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
+    		[ "优酷","优酷.jpg","youku.com/","1"],
     		
-    		[ "淘宝","淘宝.png","taobao.com","1" ],
-    		[ "Echo","echo.jpg","app-echo.com","1"], 
             [ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
     		[ "IfKdy","IfKdy.png","www.ifkdy.com/","1"],
     		[ "A站","a站.png","www.acfun.cn","1"],
@@ -31,7 +31,8 @@ $(function(){
             [ "百度","百度.png","baidu.com","1","1"],
             [ "素材中国","素材中国.jpg","sccnn.com","1"],
             [ "百度云","百度云.jpg","pan.baidu.com/disk/home#list/path=%2F","1"],
-            [ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
+            [ "淘宝","淘宝.png","taobao.com","1" ],
+            [ "Echo","echo.jpg","app-echo.com","1"], 
             [ "百度云","百度云.png","cloud.baidu.com/","1"],
 
             [ "贴吧","贴吧.png","tieba.baidu.com","1"],
