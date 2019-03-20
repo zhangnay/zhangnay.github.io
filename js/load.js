@@ -48,7 +48,7 @@ $(function(){
             [ "Jump","腾讯课堂.jpg","jump.html","0"],
             [ "俄罗斯方块","俄.png","block.html","0"],
             [ "欢迎页","腾讯课堂.jpg","welcome.html","0"],
-            [ "图片网站收藏","图片网站收藏.png","PNG.html","0"]
+            [ "图片网站收藏","图片网站收藏.png","png.html","0"]
 
             ] 
 
