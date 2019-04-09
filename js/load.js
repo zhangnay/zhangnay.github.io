@@ -2,32 +2,35 @@ $(function(){
     		//数据
     		var list=[ 
     		[ "CUPFOX","CUPFOX.png","www.cupfox.com/","1","1"], 
-    		
     		[ "芒果TV","芒果TV.jpg","www.mgtv.com/","1"],
             [ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
     		[ "优酷","优酷.jpg","youku.com/","1"],
-    		
             [ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
-    		[ "IfKdy","IfKdy.png","www.ifkdy.com/","1"],
+            [ "豆瓣","豆瓣.png","www.douban.com","1"],
     		[ "A站","a站.png","www.acfun.cn","1"],
     		[ "B站","b站.jpg","bilibili.com","1"],
-    		[ "豆瓣","豆瓣.png","www.douban.com","1"],
-    		[ "百度传课","百度传课.png","chuanke.com","1"],
-    		[ "网易云课堂","网易云课堂.png","study.163.com","1"],
+
+            [ "掘金","掘金.png","juejin.im","1"],
+            [ "译学院","译学院.png","www.yxgapp.com","1"],
+            [ "猿学","猿学.png","www.yuanxue365.com","1"],
     		[ "Runoob","runoob.jpg","runoob.com","1"],
     		[ "Bootstrap","Bootstrap.png","bootcss.com","1"],
     		[ "百度翻译","百度翻译.png","fanyi.baidu.com/translate","1"],
     		[ "Jquery插件","jquery.png","jq22.com","1"],
     		[ "知乎","知乎.png","zhihu.com","1"],
     		[ "百度脑图","百度脑图.png","naotu.baidu.com/","1"],
-    		[ "Neets","neets.png","neets.cc","1"],
+    		[ "anyknew","anyknew.png","www.anyknew.com","1"],
             [ "腾讯课堂","腾讯课堂.jpg","ke.qq.com/","1"],
             [ "慕课网","慕课网.jpg","imooc.com/","1"],
             [ "牛客网","牛客网.jpg","www.nowcoder.com/3002767","1"],
             [ "Leetcode","leetcode.png","leetcode.com/","1"],
             [ "Github","github.png","github.com/","1"],
 
-            
+            [ "Neets","neets.png","neets.cc","1"],
+            [ "MSD","msd.png","www.msdmanuals.com/zh/","1"],
+            [ "百度传课","百度传课.png","chuanke.com","1"],
+            [ "网易云课堂","网易云课堂.png","study.163.com","1"],
+            [ "IfKdy","IfKdy.png","www.ifkdy.com/","1"],
             [ "百度","百度.png","baidu.com","1","1"],
             [ "素材中国","素材中国.jpg","sccnn.com","1"],
             [ "百度云","百度云.jpg","pan.baidu.com/disk/home#list/path=%2F","1"],
