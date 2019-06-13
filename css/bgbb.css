@@ -7,6 +7,7 @@
     height: 100%;
     /*// 如果元素内容超出给定的宽度和高度，overflow 属性可以确定是否显示滚动条等行为；*/
     overflow: hidden;
+    z-index: -1;
 }
 .bg-bubbles li {
       position: absolute;
