@@ -63,7 +63,7 @@
     <div class="pages-right glyphicon glyphicon-arrow-right btn btn-default"></div>
   </div>
 
-  <div class="bg"></div>
+  <!-- <div class="bg"></div>
   <ul class="bg-bubbles">
     <li></li>
     <li></li>
@@ -75,7 +75,58 @@
     <li></li>
     <li></li>
     <li></li>
-  </ul>
+  </ul> -->
+  <link rel="stylesheet" href="css/bg_night.css">
+  <div class="bgs">
+    <div class="bg bg-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </div>
+    <div class="bg bg-night">
+      <div class="stars">
+        <div class="star star1">
+          <div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+      <div class="flystar">
+        <div class="starhead"></div>
+      </div>
+      <div class="plane"></div>
+    </div>
+  </div>
+  <div class="bg-cut" style="margin: 50px">
+  <img src="https://img.icons8.com/flat_round/64/000000/shuffle.png">
+  </div>
+
+
+  <script>
+    function stars_load(){
+      
+      for (var i = 0; i <= 30; i++) {
+        var top   = Math.round(Math.random()*500);
+        var left  = Math.round(Math.random()*1920);
+        var delay = Math.round(Math.random()*5);
+        var star_string = '<div class="star star1" style="top:'+top+'px;left:'+left+'px;animation-delay:'+delay+'s;"> <div></div><div></div><div></div><div></div> </div>';
+        $(".stars").append(star_string);
+      }
+    }
+    stars_load();
+    $('.bg-bubbles').show();
+    $('.bg-night').hide();
+    $('.bg-cut').click(function(){
+      $(".bg-bubbles").fadeToggle("slow");
+      $(".bg-night").fadeToggle("slow");
+      
+    });
+  </script>
   <!-- <div id="footer">
    <p>The code is the navigation page I wrote with html+css+js</p>
    By Zhangyang
