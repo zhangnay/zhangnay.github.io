@@ -9,10 +9,9 @@ $(function(){
             [ "豆瓣","豆瓣.png","www.douban.com","1"],
     		[ "A站","a站.png","www.acfun.cn","1"],
     		[ "B站","b站.jpg","bilibili.com","1"],
-
             [ "掘金","掘金.png","juejin.im","1"],
             [ "译学院","译学院.png","www.yxgapp.com","1"],
-            [ "猿学","猿学.png","www.yuanxue365.com","1"],
+            [ "Dribbble","dribbble.png","www.dribbble.com/dribbble","1"],
     		[ "Runoob","runoob.jpg","runoob.com","1"],
     		[ "Bootstrap","Bootstrap.png","bootcss.com","1"],
     		[ "百度翻译","百度翻译.png","fanyi.baidu.com/translate","1"],
@@ -22,11 +21,12 @@ $(function(){
     		[ "anyknew","anyknew.png","www.anyknew.com","1"],
             [ "腾讯课堂","腾讯课堂.jpg","ke.qq.com/","1"],
             [ "慕课网","慕课网.jpg","imooc.com/","1"],
-            [ "牛客网","牛客网.jpg","www.nowcoder.com/3002767","1"],
+            [ "百度云下载","百度云.jpg","www.pandownload.com/","1"],
             [ "Leetcode","leetcode.png","leetcode.com/","1"],
             [ "Github","github.png","github.com/","1"],
-
             [ "Neets","neets.png","neets.cc","1"],
+
+            [ "猿学","猿学.png","www.yuanxue365.com","1"],
             [ "MSD","msd.png","www.msdmanuals.com/zh/","1"],
             [ "百度传课","百度传课.png","chuanke.com","1"],
             [ "网易云课堂","网易云课堂.png","study.163.com","1"],
@@ -37,7 +37,7 @@ $(function(){
             [ "淘宝","淘宝.png","taobao.com","1" ],
             [ "Echo","echo.jpg","app-echo.com","1"], 
             [ "百度云","百度云.png","cloud.baidu.com/","1"],
-
+            [ "牛客网","牛客网.jpg","www.nowcoder.com/3002767","1"],
             [ "贴吧","贴吧.png","tieba.baidu.com","1"],
             [ "cc1","cc.jpg","cclolcc.com","1"], 
             [ "小程序开发","小程序.jpg","mp.weixin.qq.com/debug/wxadoc/dev/devtools/new.html","1"],
