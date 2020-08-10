@@ -203,18 +203,36 @@
 		      	height: 6px;
 		      }
 		}
+		.Rstar{
+			position: absolute;
+			animation: Rstar_b 5s infinite;
+			background: white;
+			border-radius: 50%;
+			width: 4px;
+		  	height: 4px;
+		  	box-shadow: 0 0 10px 2px white;
+		}
+		@keyframes Rstar_b {
+		      0%,100% {
+		      	transform: scale(1);
+		      }
+		   
+		      50%{
+		        transform: scale(0.7);
+		      }
+		}
 
-		  .flystar{
+		.flystar{
 		  	width: 70px;
 		  	height: 10px;
 		  	background: linear-gradient(to right, rgba(0,0,0,0),rgba(255,0,0,0.8));
 		  	border-radius: 5px;
 		  	/*box-shadow: 100px 0 5px red;*/
 		  	/*overflow: hidden;*/
-		  }
-		  .starhead{
+		}
+		.starhead{
 		  	width: 10px;height: 10px;border-radius: 50%;
 		  	background: white;
 		  	float: right;
 		  	box-shadow: 0 0 5px 5px white;
-		  }
+		}

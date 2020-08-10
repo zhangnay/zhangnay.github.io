@@ -63,19 +63,14 @@
     <div class="pages-right glyphicon glyphicon-arrow-right btn btn-default"></div>
   </div>
 
-  <!-- <div class="bg"></div>
-  <ul class="bg-bubbles">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul> -->
+
+  <style>
+    .plane_roll{ width: 100%;height: 0;padding-bottom: 100%;border-radius: 100%;background: black;position: absolute; top: 90%; left: 50%;box-shadow: 
+          20px -20px 50px #58d1ff, 
+          /*-200px -20px 50px #783be7, */
+          0px -2px 5px #ffffff, 
+          inset 0px 0px 15px rgba(125, 135, 255, 1); }
+  </style>
   <link rel="stylesheet" href="css/bg_night.css">
   <div class="bgs">
     <div class="bg bg-bubbles">
@@ -92,14 +87,15 @@
     </div>
     <div class="bg bg-night">
       <div class="stars">
-        <div class="star star1">
+        <!-- <div class="star star1">
           <div></div><div></div><div></div><div></div>
-        </div>
+        </div> -->
       </div>
-      <div class="flystar">
+      <!-- <div class="flystar">
         <div class="starhead"></div>
-      </div>
-      <div class="plane"></div>
+      </div> -->
+      <!-- <div class="plane"></div> -->
+      <div class="plane_roll"></div>
     </div>
   </div>
   <div class="bg-cut" style="margin: 50px">
@@ -118,7 +114,20 @@
         $(".stars").append(star_string);
       }
     }
-    stars_load();
+
+    function Rstars_load(){
+      
+      for (var i = 0; i <= 30; i++) {
+        var top   = Math.round(Math.random()*500);
+        var left  = Math.round(Math.random()*1920);
+        var delay = Math.round(Math.random()*5);
+        var star_string = '<div class="Rstar Rstar1" style="top:'+top+'px;left:'+left+'px;animation-delay:'+delay+'s;"></div>';
+        $(".stars").append(star_string);
+      }
+    }
+
+
+    Rstars_load();
     $('.bg-bubbles').show();
     $('.bg-night').hide();
     $(".bg-bubbles").fadeToggle("slow");
