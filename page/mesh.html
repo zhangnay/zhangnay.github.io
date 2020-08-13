@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html lang="zh-cn"> 
+<head> 
+	<meta charset="utf-8"/> 
+	<title>mesh</title> 
+	<script type='text/javascript' src='../js/jquery-1.11.1.min.js'></script>
+	<style>
+		body, html{ background: black; }
+		.mesh{ width: 100vw;height: 100vh;position: absolute;top: 0;left: 0;z-index: 100; overflow: hidden;}
+		.mesh>.square{ width: 10px;height: 10px;margin: 1px;border: 2px solid black; background: black; float: left; }
+		.mesh>.square:hover{ background: red; }
+		.mesh>.hex{  }
+		.mouseB{ width: 50px;height: 50px;border-radius: 50%;background: red; position: absolute;top: -50px;left: -50px; filter: blur(15px);}
+	</style>
+</head> 
+<body> 
+
+	<div class="mesh" id="area">
+		
+	</div>
+
+	<div class="mouseB"></div>
+	
+
+	<script>
+		window.onload = function(){
+	      document.getElementById('area').onmousemove = function (event) {
+	        /*if(!event){
+	          // 这是为了兼容IE8及以下版本
+	          event = window.event;
+	        }*/
+	        // 简写方式
+	        event = event || window.event;
+	        // document.getElementById('val').innerHTML = '当前位置: ' + event.clientX + ", " + event.clientY;
+	        $('.mouseB').css('top', event.clientY-25);
+	        $('.mouseB').css('left', event.clientX-25);
+	      }
+	    };
+
+	    function Box_load(){
+	      for (var i = 0; i <= 6130; i++) {
+	        var star_string = '<div class="square"></div>';
+	        // var star_string = '<div class="hex"></div>';
+	        $(".mesh").append(star_string);
+	      }
+	    }
+	    Box_load();
+
+	</script>
+
+</body> 
+</html>

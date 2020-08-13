@@ -5,8 +5,55 @@
 	<title>CSS Test Page</title> 
 	<script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
 
-</head> 
+</head>
+<style>
+	.demo4{
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            /*border:1px solid red;*/
+            border-radius: 50%;
+            position: relative;
+            box-sizing: border-box;
+            animation: cc 10s  ;
+            background: gray;
+           
+        }
+        .demo4 div{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: blue;
+            /*transform-origin:0px 0px;*/
+            /*animation: cc 2s  ;*/
+        }
+        @keyframes cc{
+            0%{
+                transform: rotate(30deg) rotate(0deg);
+            }
+            100%{
+            	transform: rotate(30deg) rotate(360deg);
+            }
+        }
+        @keyframes bb{
+            to{
+                transform: translateX(100px);
+            }
+        }
+
+</style> 
 <body> 
+
+
+
+	<div class="demo4"><div></div></div>
+
+
+
+
+
+
+
 	<script>
 		$(function(){
 			var a=[[0,0],[1,1],[2,2],[3,3]];
