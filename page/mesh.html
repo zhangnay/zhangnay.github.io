@@ -34,17 +34,28 @@
 	        // document.getElementById('val').innerHTML = '当前位置: ' + event.clientX + ", " + event.clientY;
 	        $('.mouseB').css('top', event.clientY-25);
 	        $('.mouseB').css('left', event.clientX-25);
+
+
 	      }
+	      
 	    };
 
 	    function Box_load(){
-	      for (var i = 0; i <= 6130; i++) {
-	        var star_string = '<div class="square"></div>';
-	        // var star_string = '<div class="hex"></div>';
-	        $(".mesh").append(star_string);
-	      }
+	    	w = $(window).width()
+	    	h = $(window).height()
+	    	num = (w-w%16)/16 * (h-h%16)/16
+	    	console.log(num) 
+		    for (var i = 0; i <= num; i++) {
+		        var star_string = '<div class="square"></div>';
+		        // var star_string = '<div class="hex"></div>';
+		        $(".mesh").append(star_string);
+		    }
 	    }
 	    Box_load();
+	    
+	    $('.square').mousemove = function (event) {
+	      	console.log('ss'+event)
+	    }
 
 	</script>
 
