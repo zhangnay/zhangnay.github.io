@@ -6,7 +6,7 @@ $(function(){
     		[ "芒果TV","芒果TV.jpg","www.mgtv.com/","1"],
             [ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
     		[ "优酷","优酷.jpg","youku.com/","1"],
-            [ "腾讯视频","腾讯视频.jpg","v.qq.com/?ptag=qqbrowser","1"],
+            [ "腾讯视频","腾讯视频.png","v.qq.com/?ptag=qqbrowser","1"],
             [ "豆瓣","豆瓣.png","www.douban.com","1"],
     		[ "A站","a站.png","www.acfun.cn","1"],
     		[ "B站","b站.jpg","bilibili.com","1"],

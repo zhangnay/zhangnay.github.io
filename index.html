@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="img/fengche.png">
 
   <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
   <!-- <link rel="stylesheet" type="text/css" href="js/bg/bg.css"> -->
   <!-- <script type="text/javascript" src="js/bg/bg.js"></script> -->
 
@@ -20,7 +21,7 @@
   <script type="text/javascript" src="js/load.js"></script>
 
 </head>
-<body style="overflow: hidden;">
+<body style="overflow: hidden;" id="app" >
   <div id="body" style="color: white">
     <div id="head">
       <div>
@@ -64,6 +65,8 @@
   </div>
 
 
+
+
   <style>
     .plane_roll{ 
       width: 100%;height: 0;padding-bottom: 100%;border-radius: 100%;background: black;position: absolute; top: 90%; left: 50%;box-shadow: 
@@ -78,6 +81,7 @@
           50%{ transform: scale(0.8); }
     }
   </style>
+
   <link rel="stylesheet" href="css/bg_night.css">
   <div class="bgs">
     <div class="bg bg-bubbles">
@@ -109,8 +113,12 @@
     <img src="https://img.icons8.com/flat_round/64/000000/shuffle.png">
   </div>
 
-<div id="live2D"></div>
+
+
+  <div id="live2D"></div>
   <script>
+   
+
     function stars_load(){
       
       for (var i = 0; i <= 30; i++) {
@@ -175,4 +183,20 @@
  </div> -->
 </div>
 </body>
+
+<script>
+   var vm = new Vue({
+      el:'app',
+      data:{
+
+      },
+      munoted(){
+
+      },
+      methods:{
+
+      },
+    });
+</script>
+
 </html>
