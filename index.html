@@ -18,52 +18,62 @@
   <script src="js/3.3.5/js/bootstrap.min.js"></script>
 
   <!--读取本地文件-->
-  <script type="text/javascript" src="js/load.js"></script>
+  <!-- <script type="text/javascript" src="js/load.js"></script> -->
 
 </head>
-<body style="overflow: hidden;" id="app" >
-  <div id="body" style="color: white">
-    <div id="head">
-      <div>
-       <p>A Simple Navigation Page</p>
-     </div>
-     <div class="find">
-       <form action="http://www.baidu.com/s" target="_blank" id="myfrom">
-         <div class="find_img">
-           <img src="img/baidu.png">
-         </div>
-         <div>
-          <input type="text" name="wd" id="input" />
-        </div>
-        <div class="find_button ">
-          <button class="glyphicon glyphicon-search" type="submit" onclick="sub()"></button>
-        </div>
-      </form>
+<body style="overflow: hidden;" >
+  <div id="app" >
 
-      <script>
-        function sub(){
-          var sub=1;
-          setInterval(function(){
-            if(sub==1){
-              $('#input').val("");
-              sub=0;
-            }
-          },50);
-        }
+    <div id="body" style="color: white">
+      <div id="head">
+        <div>
+         <p>A Simple Navigation Page</p>
+       </div>
+       <div class="find">
+         <form action="http://www.baidu.com/s" target="_blank" id="myfrom">
+           <div class="find_img">
+             <img src="img/baidu.png">
+           </div>
+           <div>
+            <input type="text" name="wd" id="input" />
+          </div>
+          <div class="find_button ">
+            <button class="glyphicon glyphicon-search" type="submit" onclick="sub()"></button>
+          </div>
+        </form>
 
-
-        
-      </script>
+        <script>
+          function sub(){
+            var sub=1;
+            setInterval(function(){
+              if(sub==1){
+                $('#input').val("");
+                sub=0;
+              }
+            },50);
+          }
+        </script>
+      </div>
 
     </div>
-  </div>
-  <div id="main">
-  </div>
-  <div class="after">
-    <div class="pages-left glyphicon glyphicon-arrow-left btn btn-default   hide"></div>
-    <div class="pages-right glyphicon glyphicon-arrow-right btn btn-default"></div>
-  </div>
 
+    <div id="main">
+      
+      <div class="dh" v-for="(item, i) in list" @click="jump(item[2], item[3])" v-show="i>showB && i<=showE">
+        <div class="img">
+          <img class="d_class" :src="'img/导航/'+item[1]" />
+          <p> {{ item[0] }} </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="after">
+      <div class="pages-left glyphicon glyphicon-arrow-left btn btn-default   hide" @click="left()"></div>
+      <div class="pages-right glyphicon glyphicon-arrow-right btn btn-default"      @click="right()"></div>
+    </div>
+
+  </div>
 
 
 
@@ -154,12 +164,11 @@
     });
 
 
-    // $('#live2D').load('lib/live2D/index.html');
     $('#live2D').load('lib/live2Ds/demo/index.html');
   </script>
 
   
-  <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" class="heart">
+  <!-- <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" class="heart"> -->
   </div>
   <script>
     window.onload = function(){
@@ -184,16 +193,73 @@
 </div>
 </body>
 
+<script src="js/list.js"></script>
 <script>
    var vm = new Vue({
-      el:'app',
+      el:'#app',
       data:{
-
+        list:list,
+        pages:1,
+        maxpage:list.length,
+        //每页加载数量
+        num:24,
+        showB:0,
+        showE:24,
       },
-      munoted(){
-
+      mounted(){
+        console.log(this.list)
+        // for(var i of this.list){
+        //   console.log(i[0])
+        // }
       },
       methods:{
+        toList(){
+
+        },
+        jump(url, type){
+          console.log(url)
+          if(type==1){
+            window.open('http://'+url)
+          }else{
+            window.open('page/'+url)
+          }
+        },
+        //上一页
+        left(){
+          this.pages--;
+          this.showB=this.pages*this.num-this.num
+          this.showE=this.pages*this.num
+          $(".pages-left").css('width','150px');
+          $(".pages-right").css('width','70px');
+          this.jugde();
+        },
+        //下一页
+        right(){
+          this.pages++;
+          this.showB=this.pages*this.num-this.num
+          this.showE=this.pages*this.num
+          $(".pages-right").css('width','150px');
+          $(".pages-left").css('width','70px');
+          this.jugde();
+        },
+        jugde(){
+          pages = this.pages;
+          console.log(pages)
+          if(pages==1){
+                    $('.pages-left').addClass('hide');
+                    $('.pages-right').css('width','150px');
+                }
+                if(pages>1){
+                    $('.pages-left').removeClass('hide');
+                }
+                if(pages<Math.ceil(this.maxpage/this.num)){
+                    $('.pages-right').removeClass('hide');
+                }
+                if(pages==Math.ceil(this.maxpage/this.num)){
+                    $('.pages-right').addClass('hide');
+                    $('.pages-left').css('width','150px');
+                }
+        }
 
       },
     });

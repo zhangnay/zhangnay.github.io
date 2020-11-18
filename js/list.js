@@ -1,7 +1,4 @@
-
-$(function(){
-    		//数据
-    		var list=[ 
+var list=[ 
     		[ "segmentfault","segmentfault.png","segmentfault.com/","1","1"], 
     		[ "芒果TV","芒果TV.jpg","www.mgtv.com/","1"],
             [ "爱奇艺","爱奇艺.jpg","iqiyi.com","1"],
@@ -58,68 +55,3 @@ $(function(){
             [ "图片网站收藏","图片网站收藏.png","png.html","0"]
 
             ] 
-
-            //初始化页数
-            var pages=1;var maxpage=list.length;
-            //每页加载数量
-            var num=24;
-
-            //根据list添加各个网站的按钮到页面中
-            add(pages,maxpage,list,num);
-
-            $(".pages-left").click(function(){
-                pages--;
-                $(".pages-left").css('width','150px');
-                $(".pages-right").css('width','70px');
-                jugde();
-            });
-            $(".pages-right").click(function(){
-                pages++;
-                $(".pages-right").css('width','150px');
-                $(".pages-left").css('width','70px');
-                jugde();
-            });
-
-            function  jugde(){
-                if(pages==1){
-                    $('.pages-left').addClass('hide');
-                    $('.pages-right').css('width','150px');
-                }
-                if(pages>1){
-                    $('.pages-left').removeClass('hide');
-                }
-                if(pages<Math.ceil(maxpage/num)){
-                    $('.pages-right').removeClass('hide');
-                }
-                if(pages==Math.ceil(maxpage/num)){
-                    $('.pages-right').addClass('hide');
-                    $('.pages-left').css('width','150px');
-                }
-                $('#main').html("");
-                add(pages,maxpage,list,num);
-            }
-
-        });
-
-function add(p,m,list,n){
-    var http;
-    for (var i = (p-1)*n; i < p*n; i++) {
-        if(i<m){
-            if(list[i][3]==0){
-                http='page/';
-            }else{
-                http='http://';
-            }
-            if(list[i][4]=="1"){
-                d_class='img_backC';
-            }else{
-                d_class="";
-            }
-            $('#main').append('<a href="'+http+list[i][2]+
-                '" target="_blank"><div class="dh"><div class="img"><img class="'+d_class+'" src="img/导航/'+list[i][1]+'" /></div><div class="name"><p>'+
-                list[i][0]+'</p></div></div></a>');
-        }
-    }
-}
-
-
