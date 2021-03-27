@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>导航</title>
+	<!--<link rel="stylesheet" href="css/style.css" />-->
+  <link href="js/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/导航.css" />
+  <link rel="shortcut icon" href="img/fengche.png">
+
+  <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+  <script src="js/vue.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="js/bg/bg.css"> -->
+  <!-- <script type="text/javascript" src="js/bg/bg.js"></script> -->
+
+  <link rel="stylesheet" href="css/bgbb.css">
+  
+  <script src="js/3.3.5/js/bootstrap.min.js"></script>
+
+  <!--读取本地文件-->
+  <!-- <script type="text/javascript" src="js/load.js"></script> -->
+
+</head>
+<body style="overflow: hidden;" >
+  <div id="app" >
+
+    <div id="body" style="color: white">
+      <div id="head">
+        <div>
+         <p>A Simple Navigation Page</p>
+        </div>
+        <div class="find">
+          <form action="http://www.baidu.com/s" target="_blank" id="myfrom">
+           <div class="find_img">
+             <img src="img/baidu.png">
+           </div>
+           <div>
+            <input type="text" name="wd" id="input" />
+          </div>
+          <div class="find_button ">
+            <button class="glyphicon glyphicon-search" type="submit" onclick="sub()"></button>
+          </div>
+         </form>
+
+        <script>
+          function sub(){
+            var sub=1;
+            setInterval(function(){
+              if(sub==1){
+                $('#input').val("");
+                sub=0;
+              }
+            },50);
+          }
+        </script>
+       </div>
+      </div>
+    </div>
+
+    <div id="main">
+      
+      <div class="dh" v-for="(item, i) in list" @click="jump(item[2], item[3])" v-show="i>showB && i<=showE">
+        <div class="img">
+          <img class="d_class" :src="'img/导航/'+item[1]" />
+          <p> {{ item[0] }} </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="after">
+      <div class="pages-left glyphicon glyphicon-arrow-left btn btn-default   hide" @click="left()"></div>
+      <div class="pages-right glyphicon glyphicon-arrow-right btn btn-default"      @click="right()"></div>
+    </div>
+
+  </div>
+
+
+
+  <style>
+    .plane_roll{ 
+      width: 100%;height: 0;padding-bottom: 100%;border-radius: 100%;background: black;position: absolute; top: 90%; left: 50%;box-shadow: 
+          20px -20px 50px #58d1ff, 
+          /*-200px -20px 50px #783be7, */
+          0px -2px 5px #ffffff, 
+          inset 0px 0px 15px rgba(125, 135, 255, 1); 
+      animation: plane_light 20s infinite;
+    }
+    @keyframes plane_light {
+          0%,100% { transform: scale(1); }
+          50%{ transform: scale(0.8); }
+    }
+  </style>
+
+  <link rel="stylesheet" href="css/bg_night.css">
+  <div class="bgs">
+    <div class="bg bg-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </div>
+    <div class="bg bg-night">
+      <div class="stars">
+
+      </div>
+      <div class="plane_roll"></div>
+    </div>
+  </div>
+
+
+  <div class="bg-cut" style="margin: 50px">
+    <img src="https://img.icons8.com/flat_round/64/000000/shuffle.png">
+  </div>
+
+
+
+  <!-- <div id="live2D"></div>
+  <script>
+    function stars_load(){
+      
+      for (var i = 0; i <= 30; i++) {
+        var top   = Math.round(Math.random()*500);
+        var left  = Math.round(Math.random()*1920);
+        var delay = Math.round(Math.random()*5);
+        var star_string = '<div class="star star1" style="top:'+top+'px;left:'+left+'px;animation-delay:'+delay+'s;"> <div></div><div></div><div></div><div></div> </div>';
+        $(".stars").append(star_string);
+      }
+    }
+
+    function Rstars_load(){
+      
+      for (var i = 0; i <= 30; i++) {
+        var top   = Math.round(Math.random()*500);
+        var left  = Math.round(Math.random()*1920);
+        var delay = Math.round(Math.random()*5);
+        var star_string = '<div class="Rstar Rstar1" style="top:'+top+'px;left:'+left+'px;animation-delay:'+delay+'s;"></div>';
+        $(".stars").append(star_string);
+      }
+    }
+
+
+    Rstars_load();
+    $('.bg-bubbles').show();
+    $('.bg-night').hide();
+    $(".bg-bubbles").fadeToggle("slow");
+    $(".bg-night").fadeToggle("slow");
+    $('.bg-cut').click(function(){
+      $(".bg-bubbles").fadeToggle("slow");
+      $(".bg-night").fadeToggle("slow");
+      
+    });
+
+
+    $('#live2D').load('lib/live2Ds/demo/index.html');
+  </script> -->
+
+  
+  <!-- <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" class="heart"> -->
+  <!-- </div> -->
+  <!-- <script>
+    window.onload = function(){
+        document.getElementById('area').onmousedown = function (event) {
+          /*if(!event){
+            // 这是为了兼容IE8及以下版本
+            event = window.event;
+          }*/
+          // 简写方式
+          event = event || window.event;
+          // document.getElementById('val').innerHTML = '当前位置: ' + event.clientX + ", " + event.clientY;
+          $('.mouseB').css('top', event.clientY-25);
+          $('.mouseB').css('left', event.clientX-25);
+        }
+      };
+
+  </script> -->
+  <!-- <div id="footer">
+   <p>The code is the navigation page I wrote with html+css+js</p>
+   By Zhangyang
+ </div> -->
+<!-- </div> -->
+</body>
+
+<script src="js/list.js"></script>
+<script>
+   var vm = new Vue({
+      el:'#app',
+      data:{
+        list:list,
+        pages:1,
+        maxpage:list.length,
+        //每页加载数量
+        num:24,
+        showB:0,
+        showE:24,
+      },
+      mounted(){
+        console.log(this.list)
+        // for(var i of this.list){
+        //   console.log(i[0])
+        // }
+      },
+      methods:{
+        toList(){
+
+        },
+        jump(url, type){
+          console.log(url)
+          if(type==1){
+            window.open('http://'+url)
+          }else{
+            window.open('page/'+url)
+          }
+        },
+        //上一页
+        left(){
+          this.pages--;
+          this.showB=this.pages*this.num-this.num
+          this.showE=this.pages*this.num
+          $(".pages-left").css('width','150px');
+          $(".pages-right").css('width','70px');
+          this.jugde();
+        },
+        //下一页
+        right(){
+          this.pages++;
+          this.showB=this.pages*this.num-this.num
+          this.showE=this.pages*this.num
+          $(".pages-right").css('width','150px');
+          $(".pages-left").css('width','70px');
+          this.jugde();
+        },
+        jugde(){
+          pages = this.pages;
+          console.log(pages)
+          if(pages==1){
+                    $('.pages-left').addClass('hide');
+                    $('.pages-right').css('width','150px');
+                }
+                if(pages>1){
+                    $('.pages-left').removeClass('hide');
+                }
+                if(pages<Math.ceil(this.maxpage/this.num)){
+                    $('.pages-right').removeClass('hide');
+                }
+                if(pages==Math.ceil(this.maxpage/this.num)){
+                    $('.pages-right').addClass('hide');
+                    $('.pages-left').css('width','150px');
+                }
+        }
+
+      },
+    });
+</script>
+
+</html>
