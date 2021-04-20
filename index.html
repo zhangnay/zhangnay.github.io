@@ -30,10 +30,19 @@
 
     <div id="body" style="color: white">
       <div id="head">
-        <!-- <div>
-         <p>My Navigation Page</p>
-        </div> -->
+        <div class="title">
+          <img src="img/header_img/header1.png" alt="头像">
+         <p>丙火 - Hotbin</p>
+        </div>
 
+        <div class="nav">
+          <ul>
+            <li class="active"><a href="http://www.zhangnay.top/">首页</a></li>
+            <li><a href="http://www.zhangnay.top/">练习</a></li>
+            <li><a href="http://www.zhangnay.top/">其他</a></li>
+          </ul>
+        </div>
+        
         <div class="find">
           <!-- <form action="http://www.baidu.com/s" target="_blank" id="myfrom"> -->
            <div class="find_img">
@@ -59,21 +68,29 @@
             },50);
           }
         </script> -->
-       </div>
-
-       <div class="rainbowTime">
-         <div class="timeBox ">
-           <div class="timeText">00:00:00 下午 </div>
-         </div>
-         <div class="timeBox flow">
-          <div class="timeText">00:00:00 下午 </div>
         </div>
-       </div>
+
+       
 
       </div>
     </div>
 
     <div id="main">
+      
+      <!-- 时钟 -->
+      <div class="iconNav">
+        <!-- <p>常用网站</p> -->
+        <div class="rainbowTime">
+          <div class="timeBox ">
+            <div class="timeText">00:00:00 下午 </div>
+          </div>
+          <div class="timeBox flow">
+           <div class="timeText">00:00:00 下午 </div>
+         </div>
+        </div>
+      </div>
+
+      <!-- 网站图标 -->
       <div class="dhs">
         <div class="dh" v-for="(item, i) in list" @click="jump(item[2], item[3])" v-show="i>showB && i<=showE">
           <div class="img">
@@ -83,6 +100,7 @@
         </div>
       </div>
 
+      <!-- 翻页 -->
       <div class="after">
         <div class="pages-left glyphicon glyphicon-arrow-left btn btn-default   hide" @click="left()"></div>
         <div class="pages-right glyphicon glyphicon-arrow-right btn btn-default"      @click="right()"></div>

@@ -1,4 +1,5 @@
-﻿body{
+﻿*{ margin: 0; }
+body{
 	background: #16a085;
 	background-repeat:   no-repeat;
 	background-attachment: fixed;
@@ -9,11 +10,59 @@
 	background-size: 100%;
 }
 p{ color:white; }
-li{ float: left; font-size: 20px; }
+li{ float: left; font-size: 20px; list-style: none; }
 
 /*布局*/
-#head{  font-size: 30px; background: black; overflow: hidden; padding: 0px 17.5%;}
+#head{  font-size: 30px; background:rgba(0,0,0); overflow: hidden; padding: 0px 17.5%; position: relative;}
 #head>div{ float: left; }
+#head .title{     
+	display: flex; align-items: center; height: 55px; 
+    margin: 0 10px 0 0; font-weight: 540;
+	position: absolute; left: 10px;
+}
+#head .title p{ margin: 0; font-weight: bold;}
+#head .title img { height: 35px; margin: 10px 10px 10px 0px;border-radius: 100%; }
+
+.nav{ height: 55px; line-height: 55px; }
+.nav ul{ overflow: hidden; padding: 0; }
+.nav li { padding: 0 30px 0 0; }
+.nav li a{ color: #b1b1b1;text-decoration: none; }
+.nav li a:hover{ }
+.nav .active a{ color: white; }
+
+.find{ font-size: 18px; padding: 10px 0;float: right !important; }
+.find form{ float: right; }
+.find div{ float: left; }
+.find input{
+	color:black;
+	width: 200px;
+	height: 35px;
+	border: 0px;
+	outline:none;
+	font-size: 20px;
+}
+
+.find_img{
+	width: 35px;
+	height: 35px;
+	border-radius: 40px 0px 0 40px;
+	margin-right: 0px;
+	background-color: white;
+	margin-top: 0px;
+}
+.find_img img{ width: 35px; padding: 5px; }
+.find_button button{
+	color: white;
+	margin-left: -0px;
+	top:0px;
+	width: 45px;
+	height: 35px;
+	border-radius:0 40px 40px 0;
+	background-color: white;
+	border: 0px;
+	outline:none;margin-top: 0px;
+}
+.find_button button:hover{ background-color: #c5003a; }
 
 
 #main{
@@ -25,7 +74,9 @@ li{ float: left; font-size: 20px; }
 	background-color: rgba(255, 255, 255, .2); border-radius: 10px;
 	backdrop-filter: blur(10px);
 	position: absolute; left: 50%;top: 50%; transform: translate(-50%,-50%);
-	padding: 15px 0;
+	padding: 0px 0;
+	border-right: 2px solid #a9a9a92b;
+	border-bottom: 2px solid #a9a9a92b;
 }
 #main a{ color:black; text-decoration-line: none; }
 .after{
@@ -40,6 +91,18 @@ li{ float: left; font-size: 20px; }
 	background: #84aba3;
 	height: 190px;
 }
+
+
+.iconNav{ height: 55px; background: black; padding: 0 10px; box-shadow: 0 0 8px 0 #bfbfbf73; position: relative;  /*animation: colorChange 10s ease-in-out infinite;*/ }
+@keyframes colorChange{
+	0%{ box-shadow: 0 0 8px 0 rgb(255, 0, 0); }
+	20%{ box-shadow: 0 0 8px 0 rgb(208, 255, 0); }
+	40%{ box-shadow: 0 0 8px 0 rgb(0, 247, 255); }
+	60%{ box-shadow: 0 0 8px 0 rgb(76, 0, 255); }
+	80%{ box-shadow: 0 0 8px 0 rgb(255, 0, 200); }
+	100%{ box-shadow: 0 0 8px 0 rgb(255, 0, 0); }
+}
+.iconNav>p{ position: absolute;left: 20px; font-size: 20px; line-height: 55px; }
 
 .dhs{ overflow: hidden;}
 .dh{
@@ -80,51 +143,7 @@ li{ float: left; font-size: 20px; }
 	/*margin-top: -30px;*/
 }
 
-.find{
-	font-size: 18px;
-	padding: 10px 0;
-}
-.find form{ float: right; }
-.find div{
-	float: left;
-	
-}
-.find input{
-	color:black;
-	width: 200px;
-	height: 35px;
-	border: 0px;
-	outline:none;
-	font-size: 20px;
 
-}
-
-.find_img{
-	width: 35px;
-	height: 35px;
-	border-radius: 40px 0px 0 40px;
-	margin-right: 0px;
-	background-color: white;
-	margin-top: 0px;
-}
-.find_img img{
-	width: 35px;
-	padding: 5px;
-}
-.find_button button{
-	color: white;
-	margin-left: -0px;
-	top:0px;
-	width: 45px;
-	height: 35px;
-	border-radius:0 40px 40px 0;
-	background-color: white;
-	border: 0px;
-	outline:none;margin-top: 0px;
-}
-.find_button button:hover{
-	background-color: #c5003a;
-}
 
 
 .pages-left,.pages-right{
