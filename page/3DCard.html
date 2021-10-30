@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D切口名片</title>
+</head>
+
+<style>
+    *{ margin: 0; padding: 0;}
+    body{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #6973b7;
+    }
+    .cardBox{ 
+       
+        float: left;
+        position: relative;
+        perspective: 700px;
+        transform-style: preserve-3d;
+        margin: 50px;;
+    }
+    .cardBox::before{
+        content: '';
+        position: absolute;
+        margin-top: -10px; margin-left: -10px;
+        width: 460px;height: 265px;
+        border: 10px solid black;
+        transform: translate(-60px,0px) rotateX(15deg) rotateY(-30deg) rotateZ(5deg);
+    }
+    .card{ 
+        width: 460px;height: 260px; 
+        transform: translate(10px,0px) rotateY(25deg)  rotateX(10deg) ;
+        font-size: 70px; line-height: 1;
+        background-color:rgba(250, 200, 30, 0.8);
+        display: flex; align-items: center;
+        
+        
+    }
+    .card span{ background-color: black; color: rgba(250, 200, 30, 0.95); margin: 20px; padding: 0 10px;}
+
+
+    .cardBox:hover .card, .cardBox:hover::before{
+        transform: none; height: 300px;
+    }  
+    .cardBox .card, .cardBox::before{
+        transition: .3s;
+    }  
+</style>
+
+<body>
+    <div class="cardBox">
+        <div class="card">
+            <span>Fisrt</span>第一
+        </div>
+    </div>
+
+    <div class="cardBox">
+        <div class="card">
+            <span>Second</span>第二
+        </div>
+    </div>
+</body>
+</html>
