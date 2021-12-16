@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0.5px边框</title>
+    <style>
+        .boxs{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 160px; flex-wrap: wrap;
+        }
+        .boxs>div{ width: 150px; height: 150px; line-height: 150px; margin: 5px; text-align: center;}
+        .box{ border: 1px solid black; }
+        .box1{ border: .5px solid black; }
+        .box2{ position: relative; line-height: 50px !important; }
+        .box2::after{
+            content: '';
+            border: 1px solid black; 
+            position: absolute;
+            left: 0; top: 0;
+            width: 200%; height: 200%;
+            transform: scale(.5);
+            transform-origin: left top;
+        }
+    </style>
+</head>
+<body>
+    <div class="boxs">
+        <div class="box"> border - 1px </div>
+        <div class="box1">border - 0.5px</div>
+        <div class="box2">border - 1px  <br> transform: scale(.5);</div>
+    </div>
+</body>
+</html>

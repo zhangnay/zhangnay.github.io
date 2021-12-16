@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <script type='text/javascript' src='../js/jquery-1.11.1.min.js'></script>
+</head>
+
+<style>
+    body{
+        width: 100vw;
+        height: 100vh;
+        /* background-color: #e5e5f7; */
+        background-color: #ffffff;
+        opacity: 1;
+        background-image:  linear-gradient(#d5d5d5 0.8px, transparent 0.8px), linear-gradient(90deg, #d5d5d5 0.8px, transparent 0.8px), linear-gradient(#d5d5d5 0.4px, transparent 0.4px), linear-gradient(90deg, #d5d5d5 0.4px, #ffffff 0.4px);
+        background-size: 20px 20px, 20px 20px, 4px 4px, 4px 4px;
+        background-position: -0.8px -0.8px, -0.8px -0.8px, -0.4px -0.4px, -0.4px -0.4px;
+     }
+
+    .main{
+        padding: 20px;
+        width: 800px;
+        /* height: 100%; */
+        overflow: hidden;
+        /* background-color: #e5e5f7; */
+        /* opacity: 0.8; */
+        /* background: repeating-linear-gradient( 45deg, #444cf7, #444cf7 5px, #e5e5f7 5px, #e5e5f7 25px ) no-repeat; */
+    }
+    .main>div{ float: left; overflow: hidden; position: relative; margin: 10px;}
+    .small{
+        width: 400px; 
+    }
+    .small img{ width: 100%; position: relative; }
+    .small .box{ width: 50px;height: 50px; opacity: .5; position: absolute;top: 0;left: 0; background-color: white; cursor: move; display: none;}
+
+    .big{ width: 200px; height: 200px; display: none; }
+    .big img{ width: 200px;  position: absolute; top: 0;left: 0;}
+
+    
+</style>
+<body>
+    
+    <div class="main">
+        <div class="small">
+            <img src="../img/bg/green.jpg" class="smallImg">
+            <div class="box"></div>
+        </div>  
+        <div class="big">
+            <img src="../img/bg/green.jpg" class="bigimg"  >
+        </div>
+    </div>
+
+
+    <script> 
+    var small = document.getElementsByClassName("small")
+    var smallImg = document.getElementsByClassName("smallImg")
+    var box = document.getElementsByClassName("box")
+    var big = document.getElementsByClassName("big")
+    var bigimg = document.getElementsByClassName("bigimg")
+ 
+        //放大倍数
+        multiple = $('.big').width()/$('.box').width() 
+        bigImgWidth = multiple * $('.small img').width()
+        $('.big img').css('width', bigImgWidth)
+
+        //移出时隐藏
+        $('.small').mouseout(function(e){ 
+            $('.big').hide()
+            $('.box').hide()
+        });
+        //移入时显示
+        $('.small').mouseover(function(e){
+             $('.big').show()
+             $('.box').show()
+        });
+
+        
+        //移动时变化
+        $('.small').mousemove(function(e){ 
+            move(e)
+        });
+        // small.onmousemove = function (e) {
+        //     move(e)
+        // }
+
+        function move(e){
+            //计算取景方块位置
+            boxT  = e.pageY - $('.small').offset().top - $('.box').height()/2
+            boxL  = e.pageX - $('.small').offset().left - $('.box').width()/2
+            
+            //设定方块移动边距 
+            maxBottom = $('.small img').height()-$('.box').height()
+            if(boxT<0){ boxT = 0 }else if(boxT>maxBottom){ boxT = maxBottom }
+            maxRight = $('.small img').width()-$('.box').width()
+            if(boxL<0){ boxL = 0 }else if(boxL>maxRight){ boxL = maxRight }
+
+            //修改方块位置
+            $(".box").css('top', boxT);
+            $(".box").css('left', boxL);
+            console.log(boxT, boxL);
+
+            //计算放大镜位置
+            bigT = boxT*multiple
+            bigL = boxL*multiple
+
+            //修改放大镜位置
+            $(".big img").css('top', -bigT);
+            $(".big img").css('left', -bigL);
+        }
+    </script>
+    
+</body>
+</html>

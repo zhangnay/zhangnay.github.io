@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex布局练习</title>
+    <style>
+        body { display: flex; justify-content: space-around; flex-wrap: wrap; }
+        body > div{display: flex; width: 48%; border: 1px solid d5d5d5; padding: 10px 0px; position: relative; margin: 30px 0 10px 0 ; background: #f1f1f1;
+    border-radius: 5px;}
+        body > div:before{position: absolute; left: 0; top: -24px; width: 100%;text-align: center;}
+        body > div > div{border: 1px solid rgb(255, 255, 255); line-height: 30px;text-align: center; background-color: #f78c31;  color: rebeccapurple;}
+        .boxW30>div{  width: 30%;   } 
+        .boxMessHeight>div:nth-child(1){  height: 50px;  } 
+        .boxMessHeight>div:nth-child(2){  height: 70px;  } 
+        .boxMessHeight>div:nth-child(3){  height: 60px;  } 
+        
+
+        .box1{ justify-content: space-around;  }
+        .box1:before{ content: 'justify-content: space-around;'; }
+
+    
+
+        .box2{  justify-content: space-between;  }
+        .box2:before{ content: 'justify-content: space-between;'; }
+
+        .box3{
+            justify-content: space-around;
+            flex-direction:  row-reverse
+        }
+        .box3:before{ content: 'flex-direction:  row-reverse';}
+
+
+        .box5{  flex-wrap: wrap;  }
+        .box5>div{ margin: 5px 35%;  }
+        .box5:before{ content: 'flex-wrap: wrap; ';}
+
+
+        .box6{ 
+            flex-wrap: wrap; 
+            flex-direction:  column-reverse;
+        }
+        .box6>div{   margin: 5px 35%; }
+        .box6:before{ content: 'flex-direction:  column-reverse;'; }
+
+
+
+        .box7{ 
+            flex-wrap: wrap-reverse;  
+        }
+        .box7>div{  width: 40%; }
+        .box7:before{ content: 'flex-wrap: wrap-reverse;'; }
+
+        .box8{  
+            align-items: flex-start 
+            /* | flex-end | center | baseline | stretch; */
+        }
+        .box8:before{ content: 'align-items: flex-start '; }
+
+        .box9{align-items: flex-end } 
+        .box9:before{ content: 'align-items: flex-end '; }
+
+
+        .box10{ align-items: center }
+        .box10:before{ content: 'align-items: center '; }
+
+
+        .box11{  align-items: stretch  }
+        .box11:before{ content: 'align-items: stretch '; }
+
+        .box12{  align-items: baseline  }
+        .box12:before{ content: 'align-items: baseline '; }
+
+    </style>
+</head>
+<body>
+    <div class="box box1 boxW30"></div>
+
+    <div class="box box2 boxW30"></div>
+
+    <div class="box box3 boxW30"></div>
+
+    <div class="box box4 boxW30"></div>
+
+    <div class="box box5 boxW30"></div>
+
+    <div class="box box6 boxW30"></div>
+
+
+    <div class="box box7"></div>
+
+    <div class="box box8 boxW30"></div>
+
+    <div class="box box9 boxW30 boxMessHeight"></div>
+
+    <div class="box box10 boxW30  boxMessHeight"></div>
+
+    <div class="box box11 boxW30 boxMessHeight"></div>
+
+    <div class="box box12 boxW30 boxMessHeight"></div>
+
+
+    <script>
+        let box = document.getElementsByClassName("box");
+        console.log(box);
+        for(let i of box){
+            i.innerHTML = `<div>1</div> <div>2</div> <div>3</div>`
+        }
+        
+
+    </script>
+</body>
+</html>
