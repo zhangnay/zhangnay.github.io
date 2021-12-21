@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣诞树</title>
+    
+</head>
+<style>
+    body{ background:black ; display:flex; align-items: center; justify-content: center;}
+    .tree{position: relative; margin-top: 20px;}
+    .tree .star{  position: absolute;top: -19px; left: -24px;z-index: 1;  filter:drop-shadow(0 0 5px #ffffff); }
+    .tree .star1{ color: #efa809;font-size: 50px; }
+    .tree .star2{ width: 50px; height: 50px; clip-path: polygon(50% 0, 65% 40%, 100% 40%, 72% 60%,
+                    85% 100%, 50% 75%, 15% 100%, 28% 60%, 0 40%, 35% 40%); background-color: #efa809;}
+
+    .tree div:not(.star){ width: 2px; background-image: linear-gradient(#1b2613, #025002); 
+        /* height: calc( var(--i) * 4px);  */   
+        position: absolute; top: 25px;     transform-origin: 50% 0; 
+        animation: swing 4s ease-in-out infinite;  animation-delay: calc(var(--i)*-0.23s); transform: rotate(-30deg);
+        z-index: calc(0 - var(--i));
+    }
+    .tree div:not(.star):after{ content: '★'; position: absolute; bottom: -5px;left: -5px;z-index: 1;}
+    .tree div:not(.star):nth-child(4n):after{ color: #c70606; }
+    .tree div:not(.star):nth-child(4n+1):after{ color: rgb(52, 211, 4); }
+    .tree div:not(.star):nth-child(4n+2):after{ color: rgb(0, 153, 255); }
+    .tree div:not(.star):nth-child(4n+3):after{ color: rgb(224, 184, 4); }
+
+    .tree div:not(.star):nth-child(-n+5){ display: none;}
+
+    @keyframes swing{
+        0%, 100%{ transform: rotate(-30deg); }
+        50%{transform: rotate(30deg) ; }
+
+         5%,45%{
+                opacity: .2;
+            }
+            0%,50%,100%{
+                opacity: 1;
+            }
+    }
+
+</style>
+<body>
+    <div class="tree">
+        <!-- <div class="star star1">★</div> -->
+        <div class="star star2"></div>
+    </div>
+
+    <script>
+        var tree = document.getElementsByClassName('tree')[0]
+        for(let i=0; i<128; i++){
+            let line = document.createElement('div')
+            n = (256-i)/(i/10+30)
+
+            line.style = '--i:'+i +';top:'+i*1+'px' +';height:'+n*i+'px'
+            tree.appendChild(line)
+
+            
+            console.log(i,n,n*i);
+          
+
+        }
+    </script>
+</body>
+</html>
