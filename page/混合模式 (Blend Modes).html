@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>混合模式 (Blend Modes)</title>
+    <style>
+         body {
+            text-align: center;
+            color: #000;
+            background-image: linear-gradient(90deg, #fff 49.9%, #000 50%);
+        }
+        h1 {
+            font-size: 100px;
+            color: rgb(255, 255, 255);
+            mix-blend-mode: difference;
+        }
+ 
+    </style>
+</head>
+<body>
+   <h1>混合模式 (Blend Modes)</h1>
+   <script>
+       let defRgb = [255,255,255]
+       let nowRgb = [0,0,0]
+       setInterval(()=>{
+           m=225; n=50
+           r = parseInt(Math.random()*(m-n+1)+n)
+           g = parseInt(Math.random()*(m-n+1)+n)
+           b = parseInt(Math.random()*(m-n+1)+n)
+           nowRgb = [r, g, b]
+           console.log(nowRgb);
+           let diff = [(defRgb[0]-nowRgb[0])/100, (defRgb[1]-nowRgb[1])/100, (defRgb[2]-nowRgb[2])/100]
+           let t = setInterval(()=>{ 
+                r1 = defRgb[0] - diff[0]
+                g1 = defRgb[1] - diff[1]
+                b1 = defRgb[2] - diff[2]
+                defRgb = [r1,g1,b1]
+                console.log(defRgb);
+                    document.querySelector('h1').style.color = `rgb(${r1},${g1},${b1})`
+            },10)
+
+        //    document.querySelector('h1').style.color = `rgb(${r},${g},${b})`
+       },1000)
+   </script>
+</body>
+</html>
