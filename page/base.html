@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base</title>
+    <script src="http://www.yanhuangxueyuan.com/versions/threejsR92/build/three.js"></script> 
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script src="http://www.yanhuangxueyuan.com/threejs/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body{ margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+    <script>
+        class MyThreeBase {
+            constructor(){
+                this.init()
+            }
+            init(){
+                this.scene = new THREE.Scene()
+                let SCENE_WIDTH = window.innerWidth,
+                    SCENE_HEIGHT = window.innerHeight
+                let VIEW_ANGLE = 45,
+                    ASPECT = SCENE_WIDTH / SCENE_HEIGHT,
+                    NEAR = 0.1,
+                    FAR = 3000
+                this.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR)
+                this.scene.add(this.camera)
+                
+                this.camera.position.set(0, -1500, 800)
+                this.camera.lookAt(this.scene.position) 
+
+                this.renderer = new THREE.WebGLRenderer({antialias:true})
+                this.renderer.setSize(SCENE_WIDTH, SCENE_HEIGHT)
+                this.renderer.setClearColor('#cccccc', 1); //设置背景颜色
+                document.body.appendChild(this.renderer.domElement)
+
+
+                this.addCube()
+                this.setController()
+                
+                this.light()
+                this.shape(1000)
+
+                // 球体网格模型
+                let geometry = new THREE.SphereGeometry(60, 40, 40);   
+                let material = new THREE.MeshLambertMaterial({
+                        color: '#fff000',// 设置颜色纹理贴图：Texture对象作为材质map属性的属性值 
+                }); //材质对象Material
+                let mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+                this.scene.add(mesh); //网格模型添加到场景中
+
+
+                
+                const helper = new THREE.CameraHelper(this.camera)
+                this.scene.add(helper)
+
+                this.render()
+                
+
+            }
+            addCube() {
+                const geometry = new THREE.BoxGeometry()
+                const material = new THREE.MeshBasicMaterial({ color: '#00ff00'})
+                this.cube = new THREE.Mesh(geometry, material)
+                this.cube.position.set(100,100,0)
+                this.scene.add(this.cube)
+            }
+              
+            setController() {
+                this.controller = new THREE.OrbitControls(
+                  this.camera,
+                  this.renderer.domElement
+                )
+            }
+
+            shape(length){
+                let squarrShape = new THREE.Shape()
+                squarrShape.moveTo(0,0)
+                squarrShape.lineTo(0,length)
+                squarrShape.lineTo(length,length)
+                squarrShape.lineTo(length,0)
+                squarrShape.lineTo(0,0)
+
+                let geometry = new THREE.ShapeBufferGeometry(squarrShape)
+                let material = new THREE.MeshBasicMaterial({ color: '#000000',transparent:true,opacity:0.3})
+                this.shape= new THREE.Mesh(geometry, material)
+                this.shape.position.set(-length/2,-length/2,0)
+                // this.shape.rotation.x=1
+                this.scene.add(this.shape)
+            }
+
+            light(){
+                /**
+                 * 光源设置
+                 */
+                //点光源
+                let point = new THREE.PointLight(0xffffff);
+                point.position.set(400, 200, 300); //点光源位置
+                this.scene.add(point); //点光源添加到场景中
+                //环境光
+                let ambient = new THREE.AmbientLight(0x444444);
+                this.scene.add(ambient);
+            }
+
+            render() { 
+                requestAnimationFrame(this.render.bind(this));
+                this.renderer.render(this.scene, this.camera)
+            } 
+        }
+
+        var thr = new MyThreeBase() 
+    </script>
+</body>
+</html>

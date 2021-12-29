@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base</title>
+    <script src="http://www.yanhuangxueyuan.com/versions/threejsR92/build/three.js"></script> 
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script src="http://www.yanhuangxueyuan.com/threejs/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body{ margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+    <script>
+        class MyThreeBase {
+            constructor(){
+                this.init()
+            }
+            init(){
+                this.scene = new THREE.Scene()
+                let SCENE_WIDTH = window.innerWidth,
+                    SCENE_HEIGHT = window.innerHeight
+                let VIEW_ANGLE = 45,
+                    ASPECT = SCENE_WIDTH / SCENE_HEIGHT,
+                    NEAR = 0.1,
+                    FAR = 10000
+                this.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR)
+                this.scene.add(this.camera)
+                
+                this.camera.position.set(0, -1500, 800)
+                this.camera.lookAt(this.scene.position) 
+
+                this.renderer = new THREE.WebGLRenderer({antialias:true})
+                this.renderer.setSize(SCENE_WIDTH, SCENE_HEIGHT)
+                this.renderer.setClearColor('#fffff', 1); //设置背景颜色
+                document.body.appendChild(this.renderer.domElement)
+
+
+                // this.addCube()
+                this.setController()
+                
+                this.light()
+                // this.shape(10000)
+
+                this.geometry = new THREE.SphereGeometry(10, 40, 40);   
+                this.material = new THREE.MeshBasicMaterial({
+                        color: '#22baff',// 设置颜色纹理贴图：Texture对象作为材质map属性的属性值 
+                }); //材质对象Material
+                
+                this.createBall()  
+                console.log(this.meshs.children);
+                
+                const helper = new THREE.CameraHelper(this.camera)
+                this.scene.add(helper)
+
+                this.render()
+                
+
+            }
+            addCube() {
+                const geometry = new THREE.BoxGeometry(100,100,100)
+                const material = new THREE.MeshBasicMaterial({ color: '#00ff00'})
+                this.cube = new THREE.Mesh(geometry, material)
+                this.cube.position.set(100,100,0)
+                this.scene.add(this.cube)
+            }
+            addBall(i,j,Initial,dr){ 
+                // 球体网格模型
+                let mesh = new THREE.Mesh(this.geometry, this.material); //网格模型对象Mesh
+                mesh.position.set(200*i-5000,200*j-5000,Math.sin(Initial*360/this.d * Math.PI / 180)*200)
+                // mesh.scale.set() 
+                mesh.ini=Initial 
+                mesh.dr=dr
+                
+                return mesh
+                // this.scene.add(mesh); //网格模型添加到场景中
+            }
+            createBall(){
+                let geo = new THREE.SphereGeometry(130, 100, 50)
+                // 不显示
+                let mat = new THREE.MeshBasicMaterial({
+                  color: 0xa3a3a3,
+                  visible: false,
+                })
+                this.meshs = new THREE.Mesh(geo, mat) 
+                this.d = 50
+
+                let d=this.d
+                let dr,drIni
+                let dd = d
+                let ini 
+                for(let i=1;i<50;i++){
+                    dr=1
+                    drIni = 1
+                    for(let j=1;j<50;j++){ 
+                        // let ini = (i+d)%d+(j+d)%d
+                        // if(ini>=d){ini-=d}
+                        // if(ini>d/2){ ini = d-ini }
+                        // if(j%9==0){dr =-dr}
+                        // if(j%9==0){ drIni=-drIni }
+                        // if(j%30==0){ drIni=-drIni }
+                        // if(drIni<0){ini = -ini}
+                        ini = (i+d)%d+(j+d)%d
+                        if(ini>d/2){ ini = d-ini }
+                        console.log(i,j,ini,dr);
+                        this.meshs.add(this.addBall(i-1,j-1, ini, dr))
+                    }
+                    // d-1
+                }
+                // this.meshs.rotation.set(0,0,45)
+                this.scene.add(this.meshs); //网格模型添加到场景中
+            }   
+            waveBall(){
+                for(let i of this.meshs.children){
+                    // i.ini +=0.1*i.dr
+                    i.ini +=0.3
+                    // if(i.ini>=this.d/2+2){i.ini=0;} 
+                    i.position.setZ(Math.sin(i.ini* 360/this.d * Math.PI / 180)*200)  
+                    let x =i.scale.x+(0.01*i.dr)
+                    // i.scale.set(x,x,x)
+
+                    // if(){
+
+                    // }
+                }
+            }
+              
+            setController() {
+                this.controller = new THREE.OrbitControls(
+                  this.camera,
+                  this.renderer.domElement
+                )
+            }
+
+            shape(length){
+                let squarrShape = new THREE.Shape()
+                squarrShape.moveTo(0,0)
+                squarrShape.lineTo(0,length)
+                squarrShape.lineTo(length,length)
+                squarrShape.lineTo(length,0)
+                squarrShape.lineTo(0,0)
+
+                let geometry = new THREE.ShapeBufferGeometry(squarrShape)
+                let material = new THREE.MeshBasicMaterial({ color: '#000000',transparent:true,opacity:0.3})
+                this.shape= new THREE.Mesh(geometry, material)
+                this.shape.position.set(-length/2,-length/2,0)
+                // this.shape.rotation.x=1
+                this.scene.add(this.shape)
+            }
+
+            light(){
+                /**
+                 * 光源设置
+                 */
+                //点光源
+                // let point = new THREE.PointLight(0xffffff);
+                // point.position.set(400, 200, 300); //点光源位置
+                // this.scene.add(point); //点光源添加到场景中
+                //环境光
+                let ambient = new THREE.AmbientLight(0x444444);
+                this.scene.add(ambient);
+            }
+
+            render() { 
+                requestAnimationFrame(this.render.bind(this));
+                this.waveBall()
+                this.renderer.render(this.scene, this.camera)
+            } 
+        }
+
+        var thr = new MyThreeBase() 
+    </script>
+</body>
+</html>
+ 
