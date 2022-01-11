@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<style>
+	body{ width: 100%;height: 100vh;background: #88bad8; display: flex; justify-content: center; align-items: center;  }
+
+	.vcard{ width: 800px; height: 400px;   border-radius: 20px; border: 10px solid white;overflow: hidden;  position: relative;background: #548ba0; }
+	/*.vcard > div{ float: left; }*/
+	.vcard .left{
+		position: absolute;left: 50px;top: 50px; transition: .5s .5s;
+	}
+
+	
+	.left a{ color: white; font: 900 20px ''; text-decoration: none; }
+	.left h2{ 
+		transition: .5s .5s;
+		color: white; 
+		opacity: 0;
+	}
+	.left span{ transition: .5s .5s; transform: translate(0px,-30px); display: inline-block; }
+	.left p{ color: white;}
+	.vcard:hover h2{ opacity: 1; }
+	.vcard:hover span{ transform: translate(0px,-0px); }
+	.vcard:hover .left{ transition: .5s .5s; left:450px; }
+
+
+	.right{ position: absolute; top:-100px; right: -220px; }
+	.line, .line2{
+		position: absolute; right: calc(var(--i)*100px);
+		height: 500px; width: calc(var(--w)*40px);
+		background: #c3c371; border-radius: 100px;
+		transform:rotateZ(35deg) translate(0,0);
+		overflow: hidden;
+		transition: 1s .5s;
+	}
+	.line:nth-child(1){ background: #63d8b2; }
+	.line:nth-child(2){ background: #de9fda; }
+	.line:nth-child(3){ background: #334d7d; }
+	.line2{ 
+		left: -470px;
+    	top: -170px;
+    	width: 70px;
+    	background: #54afff;
+    }
+	.vcard:hover .right div{ 
+		transition: .5s calc(var(--i)*.1s);
+		/*transform:rotateZ(35deg) translate(200px,-500px);  */
+		transform:rotateZ(35deg) translate(00px,-500px);  
+	}
+
+	.qrcode{ position: absolute;top: 50px;left: 50px;opacity: 0; transition: .5s; padding: 20px;background: white; border-radius: 10px;}
+	.vcard:hover .qrcode{ opacity: 1; transition: .5s .7s;}
+</style>
+
+<body>
+	<div class="vcard">
+		<div class="left">
+			<a href="http://www.zhangnay.top/">清平调</a>
+			<h2>李白</h2>
+			<p>云想衣裳花想容，春风拂槛露华浓。<br> 若非群玉山头见，会向瑶台月下逢。</p>
+			<p>一枝红艳露凝香，云雨巫山枉断肠。<br>借问汉宫谁得似，可怜飞燕倚新妆。</p>
+			<p>名花倾国两相欢，常得君王带笑看。<br>解得春风无限恨，沈香亭北倚阑干。</p>
+		</div>
+		<div class="right">
+			<div class="line" style="--i:1;--w:1.5"></div>
+			<div class="line" style="--i:2;--w:1.6"></div>
+			<div class="line" style="--i:3;--w:1.4"></div>
+			<div class="line" style="--i:4;--w:1.7"></div>
+			<div class="line2" style="--i:1"></div>
+		</div>
+
+		<div class="qrcode">
+			<img src="myUrl.png" width="260px" style="">
+		</div>
+	</div>
+</body>
+</html>

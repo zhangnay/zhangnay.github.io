@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D穿梭</title>
+    <style>
+        body{ margin: 0; padding: 0; background: black;}
+        .container{ position: relative;  perspective: 4px; width: 100vw; height: 100vh; overflow: hidden;}
+        .group{position: absolute;width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            transform-style: preserve-3d;
+            animation: move 12s infinite linear;
+        }
+        .group:nth-child(2){ animation-delay: -6s; }
+        @keyframes move{ 
+            0%{ transform: translate(-50%, -50%) translateZ(-50px);  }
+            100%{ transform: translate(-50%, -50%) translateZ(50px); } 
+        }
+        @keyframes fade{
+            0%{ opacity: 0;} 25%,60%{ opacity: 1;} 100%{ opacity: 0;}
+        }
+        
+        .plane{ 
+            position: absolute; width: 100%; height: 100%; background: rgba(255, 255, 255, .5); 
+            /* background: url(1.jpg) !important;
+            background-size: cover; */
+            animation: fade 12s infinite linear;
+            
+        }
+        .plane div{ border-radius: 50%; width: 10px; height: 10px; position: absolute;left: 0; right: 0; top: 0; bottom: 0; }
+        .choose>div>div{ border-radius: 50%; width: 10px; height: 10px; position: absolute;left: 0; right: 0; top: 0; bottom: 0;z-index: 1; }
+        /* .plane::after{ content: ''; position: absolute;left: 0;right: 0;top: 0;bottom: 0; border-radius: 50%; box-shadow: 5px 5px 5px grey;} */
+        .group:nth-child(2) .plane{ animation-delay: -6s; }
+        .left{ background: red; transform: rotateY(90deg) translateZ(50px)}
+        .right{ background: blue; transform: rotateY(-90deg)  translateZ(50px)}
+        .top{ background: yellow; transform: rotateX(90deg)  translateZ(50px)}
+        .buttom{ background: green; transform: rotateX(-90deg) translateZ(50px);}
+        .middle{ background: rgba(255, 255, 255, 0.5); transform: rotateX(180deg) translateZ(50px); }
+
+        .choose{ width: 100%;   position: absolute; left: 50%; bottom: 30px; z-index: 2; transform: translate(-50%);
+        display: flex ; justify-content: center  ; }
+        .choose>div{  border: 1px solid white; border-radius: 50%; overflow: hidden;background-color: white; text-align: center;
+            line-height: 100px; width: 100px ;height: 100px; margin:  0 10px;  font-size: 30px; position: relative;}
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="group">
+            <div class="plane left"></div>
+            <div class="plane right"></div>
+            <div class="plane top"></div>
+            <div class="plane buttom"></div>
+            <div class="plane middle"></div> 
+        </div>
+
+        <div class="group">
+            <div class="plane left"></div>
+            <div class="plane right"></div>
+            <div class="plane top"></div>
+            <div class="plane buttom"></div>
+            <div class="plane middle"></div> 
+        </div>
+    </div> 
+
+    <div class="choose">
+        <div onclick="change(1)"><img src="1.jpg" height="100%"></div>
+        <div onclick="change(2)"><img src="2.jpg" height="100%"></div>
+        <div onclick="change(3)"><div></div> <span style="z-index: 2;">随机</span> </div>
+    </div>
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"> </script>
+    <script>
+        $('.plane').css('background','none')
+        var string = ''
+        function initBg(num){ 
+            let w = $(window).width();
+            let h = $(window).height();   
+            for(let i=0; i<num;i++){ 
+                if(i!=0){string += ', '}
+                string += randomC(0,100)+'px '+randomC(0,100)+'px '+randomC(1,3)+'px'+randomColor()
+            }
+
+            s = '5px 5px 5px rgb(100,200,50)'
+            $('.plane').append(`<div></div`)
+           
+
+            $('.choose>div:nth-child(3) div').css('box-shadow',string)
+            // $('.plane::after').append("<style>.plane::after{box-shadow:"+string+"}</style>");
+            console.log(string);
+        }
+
+        function randomColor(){
+            return ' rgb('+randomC(0,255)+','+randomC(0,255)+',' +randomC(0,255)+')';
+        }
+        function randomC(x, y){
+            return parseInt(Math.random()*(y-x+1)+x)
+        }
+
+        initBg(50)
+
+        change(1)
+        function change(t){
+            if(t==1){
+                $('.plane').css('background',"url('1.jpg')")
+                $('.plane>div').css('box-shadow','none')
+            }else if(t==2){
+                $('.plane').css('background',"url('2.jpg')")
+                $('.plane>div').css('box-shadow','none')
+            }else if(t==3){
+                 $('.plane>div').css('box-shadow',string)
+            }
+        }
+    </script>
+</body>
+</html>

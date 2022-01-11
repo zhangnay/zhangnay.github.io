@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>天气</title>
+	</head>
+	<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<style>
+		#weather{ width: 50%;margin: 100px 25%; }
+		.searchBox{ width: 100%;height: 40px;overflow: hidden; }
+		.searchBox>div{ float: left; box-sizing: border-box; }
+		.searchInput{ width:calc( 100% - 100px ); height: 100%; border: 2px solid gray; }
+		.searchInput>input{ width: 100%;height: 100%; border: none; }
+		.searchBtn{ width: 100px;height: 100%;background: gray;color: white; text-align: center;line-height: 40px; } 
+
+		.days{ width: 100%;overflow: hidden; }
+		.days>div{ width: 20%;float: left; }
+	</style>
+
+	<body>
+		<div id="weather">
+			<div class="searchBox">
+				<div class="searchInput"><input type="text" v-model="city"></div>
+				<div class="searchBtn" @click="getWeather()">查询</div>
+			</div>
+
+			<div>
+				<div>{{ weather_list.city }}  {{ weather_list.fengli }}  {{ weather_list.fengxiang }}</div>
+				<div class="days">
+					<div class="day" v-for="item in weather_list.forecast.weather" >
+						<div>{{ item.date }}</div>
+						<div>{{ item.low }} - {{ item.high }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.jsons.cn/Down/jquery.json2xml.js"></script>
+	<script type="text/javascript" src="http://www.jsons.cn/Down/jquery.xml2json.js"></script>
+
+	<script>
+		var weather = new Vue({
+			el:'#weather',
+			data:{
+				weather_list:'今天的天气！',
+				city:'北京',
+			},
+			mounted(){
+				// url = 'http://wthrcdn.etouch.cn/WeatherApi?city='+this.city
+				// console.log(url)
+				this.getWeather()
+			},
+			methods:{
+				getWeather(){
+					axios.get('http://wthrcdn.etouch.cn/WeatherApi?city='+this.city)
+					.then(function(res){ 
+						weather.weather_list = $.xml2json(res.data)
+						console.log(weather.weather_list) 
+					}).catch(function(err){
+						console.log(err)
+					})
+				},
+			}
+		});
+		
+	</script>
+</html>

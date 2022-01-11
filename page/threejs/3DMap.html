@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreeJs - 跳一跳</title>
+    <title>ThreeJs - 地图</title>
 </head>
     <style>
         body {
         margin: 0;
         overflow: hidden;
         /* 隐藏body窗口区域滚动条 */
-        } 
+        }
     </style>
     <!--引入three.js三维引擎-->
     <script src="http://www.yanhuangxueyuan.com/versions/threejsR92/build/three.js"></script>
@@ -32,7 +32,7 @@
 
     const loader = new THREE.FileLoader()
     var jsondata = ''
-    let xx = loader.load('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json', (data) => {
+    let xx = loader.load('full.json', (data) => {
         // console.log('data',data);
          
         jsondata = JSON.parse(data)  
@@ -136,8 +136,8 @@
     camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
 
 
-    const helper = new THREE.CameraHelper(this.camera)
-    this.scene.add(helper)
+    // const helper = new THREE.CameraHelper(this.camera)
+    // this.scene.add(helper)
 
 
     /**
@@ -150,25 +150,28 @@
     //执行渲染操作   指定场景、相机作为参数
     let T0 = new Date();//上次时间
 
-    
+    let raycaster
+    setRaycaster()
     function render() {
             let T1 = new Date();//本次时间
             let t = T1-T0;//时间差
             T0 = T1;//把本次时间赋值给上次时间
             // requestAnimationFrame(render);
-            this.raycaster.setFromCamera(this.mouse, this.camera)
+            // console.log('ss',raycaster);
+            raycaster.setFromCamera(mouse, camera)
             renderer.render(scene,camera);//执行渲染操作
             // mesh.rotateY(0.001*t);//旋转角速度0.001弧度每毫秒
         }
-    setRaycaster()
+    
     render();
     var controls = new THREE.OrbitControls(camera,renderer.domElement);//创建控件对象
     controls.addEventListener('change', render);//监听鼠标、键盘事件
 
-
+        var mouse
     function setRaycaster() {
-        this.raycaster = new THREE.Raycaster()
-        this.mouse = new THREE.Vector2()
+        raycaster = new THREE.Raycaster()
+        
+        mouse = new THREE.Vector2()
         const onMouseMove = (event) => {
             // 将鼠标位置归一化为设备坐标。x 和 y 方向的取值范围是 (-1 to +1)
             this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
